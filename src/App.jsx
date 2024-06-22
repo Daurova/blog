@@ -9,6 +9,7 @@ import SinglePage from './pages/SinglePage';
 import Layout from './components/Layout/Layout';
 
 const App = () =>{
+
  
   return (
     <>
@@ -17,7 +18,7 @@ const App = () =>{
         <Route path='/' element={<Layout/>}>
           <Route path = 'articles' element={<Blog/>}/>
           <Route path = '/' element={<Blog/>}/>
-          <Route path="articles:slug" element={<SinglePage/>}/>
+          <Route path="/articles/:slug" element={<SinglePage/>}/>
           <Route path="signin" element={<SignIn/>}/>
           <Route  path="signup" element={<SignUp/>}/>
           <Route  path="*" element={<NotFound/>}/>  

@@ -1,30 +1,38 @@
 import React, { useEffect, useState, Fragment } from "react"
 import { getArticles } from "../services/services"
 import {Pagination} from "antd"
+import { Link, useNavigate, useSearchParams } from "react-router-dom"
+
+
 
 const Blog  = () => {
     const [posts, setPosts]=useState([])
     const [information, setInformation]=useState([])
-    useEffect(()=>{
-      const getData = async ()=>{
-      const data =  await getArticles()
-      console.log (data)
+    const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams()
+    const [currentPage, setCurrentPage] = useState(searchParams.get('page'));
 
-      setPosts(data.articles)
-    }
-    getData()
-    },[])
+ 
 
     useEffect(()=>{
-        const getData = async ()=>{
-        const data =  await getArticles()
-        console.log (data)
-  
-        setInformation(data)
-      }
-      getData()
+       
+      setCurrentPage(searchParams.get('page'))
       },[]
     )
+    
+    useEffect(()=>{
+      setSearchParams(`?page=${currentPage}`)
+      const getData = async ()=>{
+        const data =  await getArticles(currentPage)
+        console.log (data)
+       setPosts(data.articles)
+       setInformation(data)
+
+      }
+      getData()
+
+    },[currentPage])
+  
 
 
     return (
@@ -37,14 +45,20 @@ const Blog  = () => {
             <div key={index}> {/* key prop should be on the outermost element */}
                 <p>slug:{item.slug}</p>
                 <p><img src={item.author.image} alt="Author"></img></p>
-                <a href={item.title}>item title: {item.title}</a>
+                <Link to = {`/articles/${item.slug}`}>item title: {item.title}</Link>
                 <p>item description: {item.description}</p>
                 <p>created at: {item.createdAt}</p>
                 <p>number of likes: {item.favoritesCount}</p>
                 <p>Tags: {item.tagList.map((tag, tagIndex) => <span key={tagIndex}>{tag}</span>)}</p>
             </div>
         ))}
-        <Pagination total={information.articlesCount}/>
+        <Pagination total={information.articlesCount}
+                    current={currentPage}
+                    onChange={(page)=>{
+                        setCurrentPage(page)
+                       }
+                    }
+                    showSizeChanger = {false}   />
     </div>
 
     )

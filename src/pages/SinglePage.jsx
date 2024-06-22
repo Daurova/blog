@@ -1,19 +1,48 @@
-import React from "react"
-import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getArticle } from "../services/services";
+import Markdown from 'react-markdown'
 
-import { getArticles } from "../services/services"
+
+
 const SinglePage = () => {
-    const {id} = useParams()
-   
-    return (
+  const [article, setArticle] = useState(null); // State to hold fetched article
+  const { slug } = useParams(); // Get slug from URL
+
+  console.log(slug)
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const data = await getArticle(slug);
+        setArticle(data); 
+      } catch (error) {
+        console.error("Error fetching article:", error);
+      }
+    };
+    getData();
+  }, [slug]); // Dependency on slug
+
+  return (
+    <div>
+      <h1>
+        <p>
+          {article && article.article.title} {/* Display article title if loaded */}
+         SinglePage 
+        </p>
+      </h1>
+
+      {/* Display other article details */}
+      {article && (
         <div>
-            <h1>
-                <p>
-                    this is the 1st SinglePage with react-router
-                </p>
-            </h1>
+          <p>Slug: {article.article.slug}</p>
+          <p>Author: {article.article.author.username}</p> 
+          <Markdown>{article.article.body}</Markdown>
         </div>
-    )
-}
-export default SinglePage
+      )}
+    </div>
+  );
+};
+
+export default SinglePage;
+
+
