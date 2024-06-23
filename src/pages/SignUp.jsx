@@ -75,7 +75,11 @@ const SignUp = () => {
     const navigate = useNavigate();
        const [form] = Form.useForm();
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    const user = {username: values.username, email: values.email, password: values.password}
+    registerNewUser(user)
+    navigate('/signedup')
+    
+    console.log('Received values of form: ', values, user);
   };
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -114,10 +118,6 @@ const SignUp = () => {
     value: website,
   }));
 
-    const handleSubmit = (e) => {
-    //   registerNewUser()
-      navigate('/signedup'); // Redirect to login page after successful registration
-    };
   
     return (
         <>
@@ -128,8 +128,7 @@ const SignUp = () => {
         name="register"
         onFinish={onFinish}
         initialValues={{
-          email: ['zhejiang'],
-          prefix: '86',
+          email: ['est@test.ru'],
         }}
         style={{
           maxWidth: 600,
@@ -137,7 +136,7 @@ const SignUp = () => {
         scrollToFirstError
       >
         <Form.Item
-          name="nickname"
+          name="username"
           label="Username"
           tooltip="Some username"
           rules={[
@@ -153,7 +152,7 @@ const SignUp = () => {
         <Form.Item
           name="email"
           label="E-mail"
-          message = 'kkrhah'
+          message = ''
           rules={[
             {
               type: 'email',
@@ -225,8 +224,7 @@ const SignUp = () => {
           </Checkbox>
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit"
-                  onClick={handleSubmit}>
+          <Button type="primary" htmlType="submit">
             Register
          </Button>
         </Form.Item>
