@@ -38,3 +38,23 @@ export const getArticle = async (slug= 'title-smv9p7', key) => {
     const response = await data.json();
     return response;
   };
+
+  
+  export const registerNewUser = async (userData) => {
+    const data = await fetch(`${url}users`, {
+      method: 'POST',
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({ user: userData }),
+    });
+  
+    if (!data.ok) {
+      throw data;
+    }
+  
+    const result = await data.json();
+    localStorage.setItem('user', JSON.stringify(result.user));
+    return result.user;
+  };
