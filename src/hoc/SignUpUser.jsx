@@ -1,9 +1,10 @@
 import { Navigate } from "react-router-dom";
 
 
-const SignUpUser = ({children})=>{
-    const signedUp = true
-    if(signedUp === false){
+
+const SignUpUser = ({children, isSignedUp})=>{
+   
+    if(isSignedUp === false){
         return <Navigate to='/signup' />
     }else{
     return children}

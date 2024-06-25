@@ -73,38 +73,28 @@ const tailFormItemLayout = {
 
 const SignUp = () => {
     const navigate = useNavigate();
-       const [form] = Form.useForm();
-  const onFinish = (values) => {
+    const [isSignedUp, setIsSignedUp] = useState(false);
+
+    const [form] = Form.useForm();
+    const onFinish = async(values) => {
     const user = {username: values.username, email: values.email, password: values.password}
-    registerNewUser(user)
-    navigate('/signedup')
+    try{
+    const response = await registerNewUser(user);
+    console.log (response)
+    if (response) {
+      navigate('/signedup');
+      setIsSignedUp(true);
+
+    } 
+  }catch{
+    console.log('invalid username')
+    setIsSignedUp(false);
+  }
+   
     
-    console.log('Received values of form: ', values, user);
+        console.log('Received values of form: ', values, user);
   };
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    </Form.Item>
-  );
-  const suffixSelector = (
-    <Form.Item name="suffix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="USD">$</Option>
-        <Option value="CNY">¥</Option>
-      </Select>
-    </Form.Item>
-  );
+
   const [autoCompleteResult, setAutoCompleteResult] = useState([]);
   const onWebsiteChange = (value) => {
     if (!value) {
@@ -203,10 +193,7 @@ const SignUp = () => {
         >
           <Input.Password />
         </Form.Item>
-  
-        
-  
-        
+ 
   
         <Form.Item
           name="agreement"

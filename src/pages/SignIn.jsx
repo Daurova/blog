@@ -1,11 +1,17 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Button, Checkbox, Form, Input } from 'antd';
+import { useAuth } from "../hooks/useAuth";
 
 
 const SignIn  = () => {
+  const {auth, isAuth, isLoading, user }=useAuth()
+  useEffect(()=>{
+    console.log(user, isAuth)
+  },[isAuth])
     const onFinish = (values) => {
-        console.log('Success:', values);
+      auth(values)
+        console.log('Success:', user, isAuth);
       };
       const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
