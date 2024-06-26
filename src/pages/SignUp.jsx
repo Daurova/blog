@@ -82,7 +82,7 @@ const SignUp = () => {
     const response = await registerNewUser(user);
     console.log (response)
     if (response) {
-      navigate('/signedup');
+      navigate('/articles');
       setIsSignedUp(true);
 
     } 

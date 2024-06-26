@@ -17,13 +17,15 @@ const Layout = ()=>{
     localStorage.removeItem('token');
     localStorage.removeItem('user')
   };
-
+  const handleProfileClick = () => {
+    navigate('/profile'); // Перенаправление на страницу профиля
+  };
     return(
         <>
       <header>
         <NavLink to='/articles'>Realworld Blog</NavLink>
         {token?(<>
-                <div>{localStorage.getItem('user')}</div>
+                <div onClick={handleProfileClick}>{localStorage.getItem('user')}</div>
                 <NavLink to='/articles'>
                   <Button style={{borderColor: '#ffffff'}}
                           onClick = {handleSignOut}>
