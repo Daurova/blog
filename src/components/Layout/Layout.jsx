@@ -7,35 +7,40 @@ import { useNavigate } from "react-router-dom";
 
 
 const Layout = ()=>{
-  const [user, setUser] = useState(false);
   const navigate = useNavigate()
   const token = localStorage.getItem('token');
 
-  useEffect(() => {
-    if (token) {      
-          setUser(true); 
-        }
-     }
-  ,[user])
+  
   
   const handleSignOut = () => {
     // Clear user data from Local Storage and state
     localStorage.removeItem('token');
-    setUser(null);
-    navigate('/signin');
+    localStorage.removeItem('user')
   };
 
     return(
         <>
       <header>
         <NavLink to='/articles'>Realworld Blog</NavLink>
-        <div>{localStorage.getItem('user')}</div>
+        {token?(<>
+                <div>{localStorage.getItem('user')}</div>
+                <NavLink to='/articles'>
+                  <Button style={{borderColor: '#ffffff'}}
+                          onClick = {handleSignOut}>
+                    Sign Out
+                  </Button>
+                </NavLink>
+                </>
+        ):(
+          <>
         <NavLink to='/signin'>
           <Button style={{borderColor: '#ffffff'}}>Sign In</Button>
         </NavLink>
         <NavLink to='/signup'>
           <Button style={{borderColor: '#ffffff'}}>Sign Up</Button>
         </NavLink>
+        </>)
+        }
       </header>  
       <main className="container">
       <Outlet/>
