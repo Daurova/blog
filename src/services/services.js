@@ -89,5 +89,6 @@ export const getArticle = async (slug= 'title-smv9p7', key) => {
     }
   
     const result = await data.json();
+    console.log(result.user)
     return result.user;
   };

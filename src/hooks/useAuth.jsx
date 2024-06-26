@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { getUserInfo, userLogin } from "../services/services"
+import { useNavigate } from "react-router-dom"
 
 export const useAuth = ()=>{
     const [isAuth, setIsAuth] = useState(false)
@@ -7,6 +8,7 @@ export const useAuth = ()=>{
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError]= useState(null)
     const [token, setToken] = useState(null)
+    const navigate = useNavigate()
 
     useEffect(() => {
         const token = localStorage.getItem('token', 'user');
@@ -27,6 +29,7 @@ export const useAuth = ()=>{
             console.log(userDetails) 
             setUser(userDetails)
             setIsAuth(true)
+            navigate('/articles')
             }
            setIsLoading(false)
     }
