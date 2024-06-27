@@ -7,8 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 
 const Layout = ()=>{
+  const {userDetails, setUserDetails}=useState(null)
   const navigate = useNavigate()
   const token = localStorage.getItem('token');
+  const user = localStorage.getItem('user')
+  useEffect(()=>{
+     getUserInfo(token)
+  }, [token])
 
   
   
@@ -25,7 +30,9 @@ const Layout = ()=>{
       <header>
         <NavLink to='/articles'>Realworld Blog</NavLink>
         {token?(<>
-                <div onClick={handleProfileClick}>{localStorage.getItem('user')}</div>
+                <div onClick={handleProfileClick}>{localStorage.getItem('user')}
+                  <img src= {user.image} alt="user avatar"style={{ width: '20%', height: '20%' }}></img>
+                </div>
                 <NavLink to='/articles'>
                   <Button style={{borderColor: '#ffffff'}}
                           onClick = {handleSignOut}>

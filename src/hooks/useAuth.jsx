@@ -25,9 +25,11 @@ export const useAuth = ()=>{
         if (userData){
             localStorage.setItem('token', userData.token)
             setToken(userData.token)
-            const userDetails = await getUserInfo(userData.token) 
-            console.log(userDetails) 
-            setUser(userDetails)
+            
+            // const userDetails = await getUserInfo(userData.token) 
+
+            // console.log(' user details=', userDetails, 'token=', userData.token)
+            // setUser(userDetails)
             setIsAuth(true)
             navigate('/articles')
             }
