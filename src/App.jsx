@@ -26,6 +26,7 @@ const App = () =>{
           <Route path = 'signedup' element = {<SignUpUser><Blog/></SignUpUser>}/>
           <Route path = 'profile' element = {<Profile/>}/>
           <Route path = 'new-article' element = {<NewArticle/>}/>
+          <Route path = 'articles/:slug/edit' element = {<NewArticle/>}/>
           <Route  path="*" element={<NotFound/>}/>  
         </Route>
       </Routes>
