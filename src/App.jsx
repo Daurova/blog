@@ -9,6 +9,7 @@ import SinglePage from './pages/SinglePage';
 import Layout from './components/Layout/Layout';
 import SignUpUser from './hoc/SignUpUser';
 import Profile from './pages/ProfilePage';
+import NewArticle from './pages/NewArticlePage';
 const App = () =>{
 
  
@@ -24,6 +25,7 @@ const App = () =>{
           <Route path="signup" element={<SignUp/>}/>
           <Route path = 'signedup' element = {<SignUpUser><Blog/></SignUpUser>}/>
           <Route path = 'profile' element = {<Profile/>}/>
+          <Route path = 'new-article' element = {<NewArticle/>}/>
           <Route  path="*" element={<NotFound/>}/>  
         </Route>
       </Routes>

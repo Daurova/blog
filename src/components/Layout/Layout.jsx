@@ -10,7 +10,7 @@ const Layout = ()=>{
   const {userDetails, setUserDetails}=useState(null)
   const navigate = useNavigate()
   const token = localStorage.getItem('token');
-  const user = localStorage.getItem('user')
+  const user = JSON.parse(localStorage.getItem('user'));
   useEffect(()=>{
      getUserInfo(token)
   }, [token])
@@ -25,14 +25,21 @@ const Layout = ()=>{
   const handleProfileClick = () => {
     navigate('/profile'); // Перенаправление на страницу профиля
   };
+ 
     return(
         <>
       <header>
         <NavLink to='/articles'>Realworld Blog</NavLink>
         {token?(<>
                 <div onClick={handleProfileClick}>{localStorage.getItem('user')}
-                  <img src= {user.image} alt="user avatar"style={{ width: '20%', height: '20%' }}></img>
+                  <img src={user.image} alt="user avatar"style={{ width: '20%', height: '20%' }}></img>
                 </div>
+                <NavLink to='/new-article'>
+                  <Button style={{borderColor: '#ffffff'}}
+                    >
+                    Create article
+                  </Button>
+                </NavLink>
                 <NavLink to='/articles'>
                   <Button style={{borderColor: '#ffffff'}}
                           onClick = {handleSignOut}>
@@ -58,27 +65,5 @@ const Layout = ()=>{
       </>
       )
 }
-{/* <>
-      <header>
-        <NavLink to='/articles'>Realworld Blog</NavLink>
-        {user ? (
-         <div>{localStorage.getItem('user')}</div>
-          <Button style={{ borderColor: '#ffffff' }} onClick={handleSignOut}>Sign Out</Button>
-        ) : (
-          <>
-            <NavLink to='/signin'>
-              <Button style={{ borderColor: '#ffffff' }}>Sign In</Button>
-            </NavLink>
-            <NavLink to='/signup'>
-              <Button style={{ borderColor: '#ffffff' }}>Sign Up</Button>
-            </NavLink>
-          </>
-        )}
-      </header>
-      <main className="container">
-        <Outlet />
-      </main>
-      <footer>footer</footer>
-    </>
-  ); */}
+
 export default Layout
