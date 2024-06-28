@@ -110,3 +110,20 @@ export const getArticle = async (slug= 'title-smv9p7', key) => {
     localStorage.setItem('user', JSON.stringify(result.user));
     return result.user;
   };
+
+  export const createArticle = async (articleData, key) => {
+    const data = await fetch(`${url}articles`, {
+      method: 'POST',
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: `Token ${key}`,
+      },
+      body: JSON.stringify({ article: articleData }),
+    });
+    if (!data.ok) {
+      throw data;
+    }
+    const response = await data.json();
+    return response;
+  };

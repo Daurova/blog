@@ -1,13 +1,15 @@
 import { Button, Flex, Form, Input } from 'antd';
 import TagsForNewArticles from '../components/TagsForNewArticles';
-
+import { createArticle } from '../services/services';
 const NewArticle  = () => {
-
+    const token  = localStorage.getItem('token')
     const [form] = Form.useForm();
     const onFinish = (values) => {   
         const tags = localStorage.getItem('tags')
+
         const tagsArray = tags.split(",").map((tag) => tag.trim());
-        values.tags = tagsArray
+        values.tagList = tagsArray
+        createArticle({}=values, token)
           console.log('New Article:', values, 'tags', tags);
             };
     return (

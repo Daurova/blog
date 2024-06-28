@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TagsForNewArticles = ({ onTagsChange }) => {
+const TagsForNewArticles = () => {
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState("");
   
