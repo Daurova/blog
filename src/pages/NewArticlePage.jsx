@@ -32,6 +32,8 @@ if(slug){
     updateArticle({}=values, slug, token)
 }else{
     createArticle({}=values, token);
+
+    
   }}
 
   return (
