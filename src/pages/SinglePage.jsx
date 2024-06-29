@@ -2,23 +2,34 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticle } from "../services/services";
 import Markdown from 'react-markdown'
-import { Button } from "antd";
+import { Button, message, Popconfirm } from "antd";
 import { useNavigate } from "react-router-dom";
-
+import { deleteArticle } from "../services/services";
 
 
 const SinglePage = () => {
   const [article, setArticle] = useState(null); // State to hold fetched article
   const { slug } = useParams(); // Get slug from URL
+  const token  = localStorage.getItem('token')
   const navigate = useNavigate()
 
   const handleEdit = ()=>{
     navigate('edit')
-    //add edit service
   }
-const handleDelete=()=>{
-  //add delete service
-}
+
+
+  const confirm = (e) => {
+    console.log(e);
+    message.success('Click on Yes');
+    deleteArticle(slug, token)
+  };
+  const cancel = (e) => {
+    console.log(e);
+    message.error('Click on No');
+  };
+  // const handleDelete=()=>{
+  // //add delete service
+  // }
 
   console.log(slug)
   useEffect(() => {
@@ -37,8 +48,16 @@ const handleDelete=()=>{
   return (
     <>
     <Button onClick={handleEdit}>Edit</Button>
-    <Button onClick={handleDelete}>Delete</Button>
-
+    <Popconfirm
+    title="Delete the task"
+    description="Are you sure to delete this task?"
+    onConfirm={confirm}
+    onCancel={cancel}
+    okText="Yes"
+    cancelText="No"
+  >
+    <Button danger>Delete</Button>
+  </Popconfirm>
     <div>
       <h1>
         <p>
