@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { deleteArticle } from "../services/services";
 
 
+
 const SinglePage = () => {
   const [article, setArticle] = useState(null); // State to hold fetched article
   const { slug } = useParams(); // Get slug from URL
