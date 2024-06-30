@@ -7,8 +7,7 @@ import {HeartOutlined, HeartFilled} from '@ant-design/icons'
 import { favoriteAnArticle, unfavoriteAnArticle} from "../services/services"
 
 
-const Blog  = () => {
-    const [posts, setPosts]=useState([])
+const Blog  = () => {    const [posts, setPosts]=useState([])
     const [information, setInformation]=useState([])
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams()
@@ -18,14 +17,17 @@ const Blog  = () => {
 
     const handleFavourite = async (slug) => {
         try {
-            await favoriteAnArticle(slug, token);
-            // Update the like count for this article in the state
-            setArticleLikes(prevLikes => ({
-                ...prevLikes,
-                [slug]: prevLikes[slug] ? prevLikes[slug] + 1 : 1
-            }));
+            // If the article is already liked, unfavorite
+            if (articleLikes[slug] === 1) { 
+                await unfavoriteAnArticle(slug, token);
+            } else {
+                // Favorite the article (even if already liked)
+                await favoriteAnArticle(slug, token);
+            }
+            // Always set articleLikes to 1 
+            setArticleLikes(prevLikes => ({ ...prevLikes, [slug]: 1 }));
         } catch (error) {
-            console.error("Error liking article:", error);
+            console.error("Error liking/unliking article:", error);
         }
     };
 
@@ -79,12 +81,10 @@ const Blog  = () => {
                 <Link to = {`/articles/${item.slug}`}>item title: {item.title}</Link>
                 <p>item description: {item.description}</p>
                 <p>created at: {item.createdAt}</p>
-                <span onClick={() =>handleFavourite(item.slug)}>
-                    {articleLikes[item.slug] > 0 ? <HeartFilled /> : <HeartOutlined />}
-                </span>
-                <span onClick={() => handleUnFavourite(item.slug)}>
-                    {articleLikes[item.slug] > 0 ? <HeartFilled /> : <HeartOutlined />}
-                </span>
+                <span >              
+              {articleLikes[item.slug] === 1 ? <HeartFilled onClick={() => handleUnFavourite(item.slug)}/> : <HeartOutlined onClick={() =>handleFavourite(item.slug)}/>}
+             </span>
+          
                 <p>number of likes: {articleLikes[item.slug] || 0}</p> {/* Use the state for likes count */}
                 <p>Tags: {item.tagList.map((tag, tagIndex) => <span key={tagIndex}>{tag}</span>)}</p>
             </div>

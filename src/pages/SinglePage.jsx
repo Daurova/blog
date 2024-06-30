@@ -5,6 +5,8 @@ import Markdown from 'react-markdown'
 import { Button, message, Popconfirm } from "antd";
 import { useNavigate } from "react-router-dom";
 import { deleteArticle } from "../services/services";
+import { favoriteAnArticle, unfavoriteAnArticle} from "../services/services"
+import {HeartOutlined, HeartFilled} from '@ant-design/icons'
 
 
 
