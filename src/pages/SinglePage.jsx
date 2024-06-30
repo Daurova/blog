@@ -10,11 +10,14 @@ import {HeartOutlined, HeartFilled} from '@ant-design/icons'
 
 
 
+
 const SinglePage = () => {
   const [article, setArticle] = useState(null); // State to hold fetched article
   const { slug } = useParams(); // Get slug from URL
   const token  = localStorage.getItem('token')
   const navigate = useNavigate()
+  const [articleLikes, setArticleLikes] = useState({}); // State to track likes
+
 
   const handleEdit = ()=>{
     navigate('edit')
@@ -35,18 +38,49 @@ const SinglePage = () => {
   // }
 
   console.log(slug)
+
+  const handleFavourite = async (slug) => {
+    try {
+        // If the article is already liked, unfavorite
+        if (articleLikes[slug] === 1) { 
+            await unfavoriteAnArticle(slug, token);
+        } else {
+            // Favorite the article (even if already liked)
+            await favoriteAnArticle(slug, token);
+        }
+        // Always set articleLikes to 1 
+        setArticleLikes(prevLikes => ({ ...prevLikes, [slug]: 1 }));
+    } catch (error) {
+        console.error("Error liking/unliking article:", error);
+    }
+};
+
+const handleUnFavourite = async (slug) => {
+    try {
+        await unfavoriteAnArticle(slug, token);
+        // Update the like count for this article in the state
+        setArticleLikes(prevLikes => ({
+            ...prevLikes,
+            [slug]: prevLikes[slug] >1 ? prevLikes[slug] - 1 : 0
+        }));
+    } catch (error) {
+        console.error("Error disliking article:", error);
+    }
+};
   useEffect(() => {
     
     const getData = async () => {
       try {
         const data = await getArticle(slug);
         setArticle(data); 
+        setArticleLikes({ [slug]: data.article.favoritesCount });
       } catch (error) {
         console.error("Error fetching article:", error);
       }
     };
     getData();
   }, [slug]); // Dependency on slug
+
 
   return (
     <>
@@ -71,13 +105,18 @@ const SinglePage = () => {
 
       {/* Display other article details */}
       { article && (
-        
+        <>
         <div>
           <p>Slug: {article.article.slug}</p>
           <p>Author: {article.article.author.username}</p> 
           <Markdown>{article.article.body}</Markdown>
         </div>
-        
+         <span >              
+         {articleLikes[slug] === 1 ? <HeartFilled onClick={() => handleUnFavourite(slug)}/> : <HeartOutlined onClick={() =>handleFavourite(slug)}/>}
+        </span>
+     
+        <p>number of likes: {articleLikes[slug] || 0}</p> {/* Use the state for likes count */}
+        </>
       )}
     </div>
     </>
