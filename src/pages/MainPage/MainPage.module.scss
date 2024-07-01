@@ -24,6 +24,7 @@ $text-color-secondary: #00000080;
     max-width: 100px;
     font-size: 20px;
     color: $tite-font-color;
+    font-family: 'Inter';
 }
 .article-item__right {
     margin: 0;
@@ -52,4 +53,6 @@ $text-color-secondary: #00000080;
     min-width: 10px;
     padding-right: 5px;
     padding-left: 5px;
+    font-size: 12px;
+    font-family: 'Inter'
 }
