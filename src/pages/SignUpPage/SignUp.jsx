@@ -2,7 +2,7 @@ import React from "react"
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select } from 'antd'
-import { registerNewUser } from "../services/services";
+import { registerNewUser } from "../../services/services";
 
 
 const { Option } = Select;

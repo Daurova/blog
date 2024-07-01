@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getArticle } from "../services/services";
+import { getArticle } from "../../services/services";
 import Markdown from 'react-markdown'
 import { Button, message, Popconfirm } from "antd";
 import { useNavigate } from "react-router-dom";
-import { deleteArticle } from "../services/services";
-import { favoriteAnArticle, unfavoriteAnArticle} from "../services/services"
+import { deleteArticle } from "../../services/services";
+import { favoriteAnArticle, unfavoriteAnArticle} from "../../services/services"
 import {HeartOutlined, HeartFilled} from '@ant-design/icons'
 
 

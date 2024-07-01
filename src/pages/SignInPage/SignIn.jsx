@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Button, Checkbox, Form, Input } from 'antd';
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 
 
 const SignIn  = () => {

@@ -1,18 +1,18 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 
-import SignIn from './pages/SignIn';
-import  SignUp  from './pages/SignUp';
-import  Blog  from './pages/Mainpage';
-import  NotFound from './pages/Notfoundpage';
-import SinglePage from './pages/SinglePage';
+import SignIn from './pages/SignInPage/SignIn';
+import  SignUp  from './pages/SignUpPage/SignUp';
+import  Blog from './pages/MainPage/Mainpage'
+import  NotFound from './pages/NotFoundPage/Notfoundpage';
+import SinglePage from './pages/SinglePage/SinglePage';
 import Layout from './components/Layout/Layout';
 import SignUpUser from './hoc/SignUpUser';
-import Profile from './pages/ProfilePage';
-import NewArticle from './pages/NewArticlePage';
-const App = () =>{
+import Profile from './pages/ProfilePage/ProfilePage';
+import NewArticle from './pages/NewArticlePage/NewArticlePage';
 
- 
+
+const App = () =>{
   return (
     <>
     <div className="App">

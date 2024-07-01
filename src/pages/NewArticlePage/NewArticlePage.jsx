@@ -1,6 +1,6 @@
 import { Button, Flex, Form, Input, Space } from 'antd';
 import { useState } from 'react';
-import { createArticle, updateArticle } from '../services/services';
+import { createArticle, updateArticle } from '../../services/services';
 import { useParams } from "react-router-dom";
 
 

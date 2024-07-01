@@ -1,5 +1,5 @@
 import { UploadOutlined } from '@ant-design/icons';
-import { updateUser } from '../services/services';
+import { updateUser } from '../../services/services';
 import { useNavigate } from 'react-router-dom';
 import { Button, Form, Input, InputNumber } from 'antd';
 const layout = {
