@@ -122,7 +122,7 @@ const handleUnFavourite = async (slug) => {
           </div>    
           </div>
           <div>
-          <div style={{display:'flex', wrap:'no-wrap'}}>
+          <div style={{display:'flex', wrap:'no-wrap', padding:'10px'}}>
           <Button onClick={handleEdit}>Edit</Button>
            <Popconfirm
             title="Delete the task"

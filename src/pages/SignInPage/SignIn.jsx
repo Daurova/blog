@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Button, Checkbox, Form, Input } from 'antd';
 import { useAuth } from "../../hooks/useAuth";
+import classes from '../SignInPage/SignInPage.module.scss'
 
 
 const SignIn  = () => {
@@ -17,18 +18,21 @@ const SignIn  = () => {
         console.log('Failed:', errorInfo);
       };
     return (
-
-
+<>
+<div className={classes['container']} >
+  <h2 style={{fontWeight:'500px', fontSize:'20px'}}>Sign In</h2>
   <Form
     name="basic"
+    layout="vertical"
     labelCol={{
       span: 8,
     }}
     wrapperCol={{
-      span: 16,
+      span: 23,
     }}
     style={{
-      maxWidth: 600,
+      maxWidth: 900,
+   
     }}
     initialValues={{
       remember: true,
@@ -51,7 +55,7 @@ const SignIn  = () => {
          },
        ]}
     >
-      <Input />
+      <Input style={{ height: '40px' }}/>
     </Form.Item>
 
     <Form.Item
@@ -64,31 +68,23 @@ const SignIn  = () => {
         },
       ]}
     >
-      <Input.Password />
+      <Input.Password style={{ height: '40px' }}/>
     </Form.Item>
 
-    <Form.Item
-      name="remember"
-      valuePropName="checked"
-      wrapperCol={{
-        offset: 8,
-        span: 16,
-      }}
-    >
-      <Checkbox>Remember me</Checkbox>
-    </Form.Item>
 
     <Form.Item
       wrapperCol={{
-        offset: 8,
-        span: 16,
+        offset: 0,
+        span: 23,
       }}
     >
-      <Button type="primary" htmlType="submit">
+      <Button type="primary" block htmlType="submit">
         Submit
       </Button>
     </Form.Item>
   </Form>
+  </div>
+  </>
 );
     
 }

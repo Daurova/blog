@@ -66,7 +66,7 @@ const Layout = ()=>{
       <main className="container">
       <Outlet/>
       </main>
-      <footer></footer>
+      <footer style={{marginTop:'20px', width: '0px'}}></footer>
       </>
       )
 }
