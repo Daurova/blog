@@ -85,17 +85,6 @@ const handleUnFavourite = async (slug) => {
 
   return (
     <>
-    <Button onClick={handleEdit}>Edit</Button>
-    <Popconfirm
-    title="Delete the task"
-    description="Are you sure to delete this task?"
-    onConfirm={confirm}
-    onCancel={cancel}
-    okText="Yes"
-    cancelText="No"
-  >
-    <Button danger>Delete</Button>
-  </Popconfirm>
     <div style={{backgroundColor:'white', width:'938px'}}
           className={classes['article-single']}>
 
@@ -121,16 +110,34 @@ const handleUnFavourite = async (slug) => {
         </div>
  
         <div className={classes['article-single-right']}>
+          <div style={{display:'flex', flexDirection:'row'}}>
           <div className={classes['article-single-right__info']}>
             <p>{article.article.author.username}</p> 
             <p style={{fontSize: '12px', margin:'0px', padding:'0px', paddingRight:'6px'}}>{format(new Date(article.article.createdAt), 'MMMM dd, yyyy')}</p>
-          </div>
+          </div >
           <div className={classes['article-single-right__image']}>
             <img src= {article.article.author.image} alt='avatar'
                  className={classes['article-image']}>
             </img>
-          </div>     
+          </div>    
+          </div>
+          <div>
+          <div style={{display:'flex', wrap:'no-wrap'}}>
+          <Button onClick={handleEdit}>Edit</Button>
+           <Popconfirm
+            title="Delete the task"
+            description="Are you sure to delete this task?"
+            onConfirm={confirm}
+            onCancel={cancel}
+            okText="Yes"
+            cancelText="No"
+           >
+         <Button danger>Delete</Button>
+           </Popconfirm> 
+           </div>
+           </div>
         </div>
+        
       </div>
       <div>
         <Markdown>{article.article.body}</Markdown>

@@ -12,11 +12,12 @@ $background-color: #EBEEF3;
     margin: 0;
     display: flex;
     justify-content: space-between;
-    
     margin: 0 auto ;
     margin-bottom: 20px;
     margin-top: 20px;
-}
+    overflow:hidden;
+    text-overflow: ellipsis}
+
 
 .article-image {
     height: 46px;
