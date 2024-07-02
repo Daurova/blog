@@ -104,6 +104,7 @@ const handleUnFavourite = async (slug) => {
         <>
       <div className={classes['article-single-overview']}>
         <div className={classes['article-single-left']}> 
+          <div style={{display:'flex', justifyContent:'flex-start'}}>
           <span className={classes['article-title']}>
             {article && article.article.title} {/* Display article title if loaded */}
           </span>
@@ -113,14 +114,22 @@ const handleUnFavourite = async (slug) => {
             </span>
             <span>{articleLikes[slug] || 0}</span> {/* Use the state for likes count */}
           </span>
+          </div>
+          <div style={{display:'flex', justifyContent:'flex-start'}}>
+            {article.article.description}
+          </div>
         </div>
  
         <div className={classes['article-single-right']}>
-          <p>Author: {article.article.author.username}</p> 
-          <p style={{fontSize: '12px', margin:'0px', padding:'0px', paddingRight:'6px'}}>{format(new Date(article.article.createdAt), 'MMMM dd, yyyy')}</p>
-
-          <img src= {article.article.author.image} alt='avatar'
-               className={classes['article-image']}></img>
+          <div className={classes['article-single-right__info']}>
+            <p>{article.article.author.username}</p> 
+            <p style={{fontSize: '12px', margin:'0px', padding:'0px', paddingRight:'6px'}}>{format(new Date(article.article.createdAt), 'MMMM dd, yyyy')}</p>
+          </div>
+          <div className={classes['article-single-right__image']}>
+            <img src= {article.article.author.image} alt='avatar'
+                 className={classes['article-image']}>
+            </img>
+          </div>     
         </div>
       </div>
       <div>
