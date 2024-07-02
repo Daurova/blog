@@ -20,15 +20,17 @@ const SignIn  = () => {
     return (
 <>
 <div className={classes['container']} >
-  <h2 style={{fontWeight:'500px', fontSize:'20px'}}>Sign In</h2>
+  <div style={{fontWeight:'500px', fontSize:'20px'}}>Sign In</div>
   <Form
     name="basic"
     layout="vertical"
     labelCol={{
       span: 8,
+
     }}
     wrapperCol={{
       span: 23,
+      height: 68
     }}
     style={{
       maxWidth: 900,
@@ -55,12 +57,13 @@ const SignIn  = () => {
          },
        ]}
     >
-      <Input style={{ height: '40px' }}/>
+      <Input style={{ height: '56px', borderRadius:'6px'}}/>
     </Form.Item>
 
     <Form.Item
       label="Password"
       name="password"
+
       rules={[
         {
           required: true,
@@ -68,7 +71,7 @@ const SignIn  = () => {
         },
       ]}
     >
-      <Input.Password style={{ height: '40px' }}/>
+      <Input.Password style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
     </Form.Item>
 
 
@@ -78,8 +81,8 @@ const SignIn  = () => {
         span: 23,
       }}
     >
-      <Button type="primary" block htmlType="submit">
-        Submit
+      <Button type="primary" block htmlType="submit" style={{height:'40px', borderRadius: '6px'}}>
+        Login
       </Button>
     </Form.Item>
   </Form>
