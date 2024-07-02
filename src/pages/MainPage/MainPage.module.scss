@@ -1,5 +1,7 @@
 $tite-font-color : #366EFF;
 $text-color-secondary: #00000080;
+$background-color: #EBEEF3;
+
 
 .articles-item {
     width: 906px;
@@ -11,12 +13,16 @@ $text-color-secondary: #00000080;
     display: flex;
     justify-content: space-between;
     
+    margin: 0 auto ;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .article-image {
     height: 46px;
-    width: 46 px;
+    width: 46px;
     border-radius: 50%;
+    margin-left: 40px;
 }      
 
 .article-title {
@@ -25,6 +31,8 @@ $text-color-secondary: #00000080;
     font-size: 20px;
     color: $tite-font-color;
     font-family: 'Inter';
+    text-decoration: none;
+    margin-right: 15px;
 }
 .article-item__right {
     margin: 0;
@@ -43,16 +51,20 @@ $text-color-secondary: #00000080;
     display: flex;
     align-content: flex-end;
     text-align: end;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .tag{
     border: 0.5px solid $text-color-secondary;
-    max-width: 20px;
+    max-width: 30px;
     overflow: hidden;
     margin: 2px;
     min-width: 10px;
     padding-right: 5px;
     padding-left: 5px;
     font-size: 12px;
-    font-family: 'Inter'
+    font-family: 'Inter';
+    text-align: start;
+    margin-top: 20px;
 }

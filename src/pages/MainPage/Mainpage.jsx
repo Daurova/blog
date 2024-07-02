@@ -6,6 +6,7 @@ import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom"
 import {HeartOutlined, HeartFilled} from '@ant-design/icons'
 import { favoriteAnArticle, unfavoriteAnArticle} from "../../services/services"
 import classes from './MainPage.module.scss'
+import { format } from 'date-fns';
 
 
 const Blog  = () => {    const [posts, setPosts]=useState([])
@@ -80,26 +81,27 @@ const Blog  = () => {    const [posts, setPosts]=useState([])
                       <Link to = {`/articles/${item.slug}`} 
                         className = {classes['article-title']} >{item.title}</Link>
                     </span>
-                    <span>              
+                    <span style={{paddingTop:'4px'}}>              
                        {articleLikes[item.slug] === 1 ? <HeartFilled onClick={() => handleUnFavourite(item.slug)}/> : <HeartOutlined onClick={() =>handleFavourite(item.slug)}/>}
                        <span>{articleLikes[item.slug] || 0}</span> 
                     </span>  
                   {/* <p>slug:{item.slug}</p> */}
                 </div>  
                 <div>
-                  <div>
+                  <span style={{display:'flex', justifyContent:'flex-start'}}>
                        {item.tagList.map((tag, tagIndex) => (
                          tag !== null ? (
                            <span className={classes['tag']} key={tagIndex}>{tag}</span>
                             ) : null
                           ))
                         }
-                  </div>
-                    <p>{item.description}</p>
+                  </span >
+                   <span style={{display:'flex', justifyContent:'flex-start' }}><p style = {{maxWidth: '600px', overflow:'hidden', textOverflow: 'ellipsis'}}>{item.description}</p></span>
                </div> </div>
                 <div className={classes['article-item__right']}>
                   <div className={classes['article-item_right-info']}>
-                   <p>{item.createdAt}</p>
+                  <p style={{fontSize:'18px', margin:'10px', padding:'0px'}}>{item.author.username}</p>
+                   <p style={{fontSize: '12px', margin:'0px', padding:'0px', paddingRight:'6px'}}>{format(new Date(item.createdAt), 'MMMM dd, yyyy')}</p>
                   </div>
                   <div className={classes['article-item_right-image']}>    
                    <p><img src={item.author.image} alt="Author" className={classes['article-image']}></img></p>

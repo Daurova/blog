@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { deleteArticle } from "../../services/services";
 import { favoriteAnArticle, unfavoriteAnArticle} from "../../services/services"
 import {HeartOutlined, HeartFilled} from '@ant-design/icons'
-
+import classes from '../SinglePage/SinglePage.module.scss'
+import { format } from "date-fns";
 
 
 
@@ -95,27 +96,36 @@ const handleUnFavourite = async (slug) => {
   >
     <Button danger>Delete</Button>
   </Popconfirm>
-    <div>
-      <h1>
-        <p>
-          {article && article.article.title} {/* Display article title if loaded */}
-         SinglePage 
-        </p>
-      </h1>
+    <div style={{backgroundColor:'white', width:'938px'}}
+          className={classes['article-single']}>
 
       {/* Display other article details */}
       { article && (
         <>
-        <div>
-          <p>Slug: {article.article.slug}</p>
-          <p>Author: {article.article.author.username}</p> 
-          <Markdown>{article.article.body}</Markdown>
+      <div className={classes['article-single-overview']}>
+        <div className={classes['article-single-left']}> 
+          <span className={classes['article-title']}>
+            {article && article.article.title} {/* Display article title if loaded */}
+          </span>
+          <span style={{paddingTop:'4px'}}>              
+            <span >              
+              {articleLikes[slug] === 1 ? <HeartFilled onClick={() => handleUnFavourite(slug)}/> : <HeartOutlined onClick={() =>handleFavourite(slug)}/>}
+            </span>
+            <span>{articleLikes[slug] || 0}</span> {/* Use the state for likes count */}
+          </span>
         </div>
-         <span >              
-         {articleLikes[slug] === 1 ? <HeartFilled onClick={() => handleUnFavourite(slug)}/> : <HeartOutlined onClick={() =>handleFavourite(slug)}/>}
-        </span>
-     
-        <p>number of likes: {articleLikes[slug] || 0}</p> {/* Use the state for likes count */}
+ 
+        <div className={classes['article-single-right']}>
+          <p>Author: {article.article.author.username}</p> 
+          <p style={{fontSize: '12px', margin:'0px', padding:'0px', paddingRight:'6px'}}>{format(new Date(article.article.createdAt), 'MMMM dd, yyyy')}</p>
+
+          <img src= {article.article.author.image} alt='avatar'
+               className={classes['article-image']}></img>
+        </div>
+      </div>
+      <div>
+        <Markdown>{article.article.body}</Markdown>
+      </div>
         </>
       )}
     </div>

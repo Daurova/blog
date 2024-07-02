@@ -1,9 +1,8 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { Button } from "antd";
 import { getUserInfo } from "../../services/services";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import classes from '../Layout/Layout.module.scss'
 
 
 const Layout = ()=>{
@@ -28,40 +27,46 @@ const Layout = ()=>{
  
     return(
         <>
-      <header>
-        <NavLink to='/articles'>Realworld Blog</NavLink>
-        {token?(<>
+      <header style={{backgroundColor:'white', display:'flex', justifyContent:'space-between', height:'80px', paddingTop:'0px', paddingLeft:'20px'}}>
+        <span style ={{paddingTop:'15px'}}><NavLink to='/articles'className={classes['header-title']}>Realworld Blog</NavLink></span>
+        <span>  {token?(<>
                 <div onClick={handleProfileClick}>{localStorage.getItem('user')}
                   <img src={user.image} alt="user avatar"style={{ width: '20%', height: '20%' }}></img>
                 </div>
-                <NavLink to='/new-article'>
-                  <Button style={{borderColor: '#ffffff'}}
-                    >
+                <NavLink to='/new-article' style={{fontSize:'30px'}}>
+                  <button style={{borderColor: '#ffffff'}}
+                          className={classes['header-button']}
+                           size = {'small'}>      
                     Create article
-                  </Button>
+                  </button>
                 </NavLink>
                 <NavLink to='/articles'>
-                  <Button style={{borderColor: '#ffffff'}}
-                          onClick = {handleSignOut}>
+                  <button style={{borderColor: '#ffffff'}}
+                          onClick = {handleSignOut}
+                          size="large"
+                          className={classes['header-button']}>
                     Sign Out
-                  </Button>
+                  </button>
                 </NavLink>
                 </>
         ):(
           <>
         <NavLink to='/signin'>
-          <Button style={{borderColor: '#ffffff'}}>Sign In</Button>
+          <button style={{borderColor: '#ffffff'}}
+                  className={classes['header-button']}
+          >Sign In</button>
         </NavLink>
         <NavLink to='/signup'>
-          <Button style={{borderColor: '#ffffff'}}>Sign Up</Button>
+          <button style={{borderColor: '#ffffff'}}
+                  className={classes['header-button']}>Sign Up</button>
         </NavLink>
         </>)
-        }
+        }</span>
       </header>  
       <main className="container">
       <Outlet/>
       </main>
-      <footer>footer</footer>
+      <footer></footer>
       </>
       )
 }
