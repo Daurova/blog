@@ -38,6 +38,7 @@ if(slug){
 
   return (
     <><div className={classes['container']}>
+      <h2>Create new article</h2>
        <Form
       form={form}
       scrollToFirstError
@@ -52,7 +53,7 @@ if(slug){
         label="Title"
         rules={[{ required: false }]}
       >
-        <Input />
+        <Input style={{height:'40px', borderRadius: '6px'}} />
       </Form.Item>
 
       <Form.Item
@@ -60,7 +61,7 @@ if(slug){
         label="Short description"
         rules={[{ required: false }]}
       >
-        <Input />
+        <Input style={{height:'40px', borderRadius: '6px'}}/>
       </Form.Item>
 
       <Form.Item
@@ -68,34 +69,36 @@ if(slug){
         label="Text"
         rules={[{ required: false }]}
       >
-        <Input.TextArea rows={6} />
+        <Input.TextArea rows={6} style={{borderRadius: '6px'}} />
       </Form.Item>
 
-      <Form.Item label="Tags">
-        <Space>
+      <Form.Item label="Tags"
+      >
           {tags.map((tag, index) => (
-            <span key={index}>
+            <>
+            <span key={index} className={classes['tags']} >
               {tag}
-              <span
-                style={{
-                  cursor: 'pointer',
-                  marginLeft: 8,
-                  fontSize: 14,
-                  color: '#999',
-                }}
-                onClick={() => handleDeleteTag(index)}
-              >
-                Delete
-              </span>
             </span>
+             <Button 
+             style={{
+               cursor: 'pointer',
+               marginLeft: 8,
+               fontSize: 14,
+               color: '#999',
+             }}
+             onClick={() => handleDeleteTag(index)}
+           >
+             Delete
+           </Button>
+           </>
           ))}
           <Input
             placeholder="Add a tag"
             value={tagInput}
             onChange={(e) => setTagInput(e.target.value)}
+            style={{height:'40px', maxWidth:'200px'}}
           />
           <Button onClick={handleAddTag}>Add</Button>
-        </Space>
       </Form.Item>
 
       <Form.Item
@@ -104,7 +107,7 @@ if(slug){
          }}
       >
         <Flex gap="small">
-          <Button type="primary" block htmlType="submit">
+          <Button type="primary" block htmlType="submit" style={{height: '40px'}} >
             Send
           </Button>
         </Flex>
