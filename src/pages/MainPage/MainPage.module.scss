@@ -1,6 +1,7 @@
 $tite-font-color : #366EFF;
 $text-color-secondary: #00000080;
 $background-color: #EBEEF3;
+$text-color:#000000BF;
 
 
 .articles-item {
@@ -58,6 +59,7 @@ $background-color: #EBEEF3;
 
 .tag{
     border: 0.5px solid $text-color-secondary;
+    color: $text-color-secondary;
     max-width: 30px;
     overflow: hidden;
     margin: 2px;
@@ -68,4 +70,10 @@ $background-color: #EBEEF3;
     font-family: 'Inter';
     text-align: start;
     margin-top: 20px;
+}
+
+.description{
+    color: $text-color;
+    font-size: 12px;
+    line-height: 22px;
 }

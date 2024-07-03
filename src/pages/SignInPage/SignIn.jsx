@@ -7,6 +7,7 @@ import classes from '../SignInPage/SignInPage.module.scss'
 
 const SignIn  = () => {
   const {auth, isAuth, isLoading, user }=useAuth()
+  
   useEffect(()=>{
     console.log(user, isAuth)
   },[isAuth])

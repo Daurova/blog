@@ -27,16 +27,22 @@ const validateMessages = {
 /* eslint-enable no-template-curly-in-string */
 const token = localStorage.getItem('token')
 
-const onFinish = (values) => {
-  console.log(values, token);
-  updateUser({}=values.user, token)
-};
+
 
 
 
 const Profile  = () => {
   const navigate = useNavigate()
- 
+  const onFinish = async (values) => {
+    try {
+    console.log(values, token);
+    await updateUser({}=values.user, token)
+    navigate ('/articles')
+  } catch (error) {
+    console.error('Error updating user:', error);
+  };
+  }
+
       return(
         <><div className={classes['container']}>
           <h2 className={classes['header']}>Edit profile</h2>

@@ -115,7 +115,7 @@ const confirm= async()=>{
           </span>
           <span style={{paddingTop:'4px'}}>              
             <span >              
-              {articleLikes[slug] === 1 ? <HeartFilled onClick={() => handleUnFavourite(slug)}/> : <HeartOutlined onClick={() =>handleFavourite(slug)}/>}
+              {articleLikes[slug] === 1 ? <HeartFilled  style = {{color:'red'}} onClick={() => handleUnFavourite(slug)}/> : <HeartOutlined onClick={() =>handleFavourite(slug)}/>}
             </span>
             <span>{articleLikes[slug] || 0}</span> {/* Use the state for likes count */}
           </span>
@@ -126,9 +126,9 @@ const confirm= async()=>{
         </div>
  
         <div className={classes['article-single-right']}>
-          <div style={{display:'flex', flexDirection:'row'}}>
+          <div style={{display:'flex', flexDirection:'row', justifyContent: 'space-evenly'}}>
           <div className={classes['article-single-right__info']}>
-            <p>{article.article.author.username}</p> 
+            <p style={{marginBottom:'0px', fontSize:'18px'}}>{article.article.author.username}</p> 
             <p style={{fontSize: '12px', margin:'0px', padding:'0px', paddingRight:'6px'}}>{format(new Date(article.article.createdAt), 'MMMM dd, yyyy')}</p>
           </div >
           <div className={classes['article-single-right__image']}>
@@ -138,7 +138,7 @@ const confirm= async()=>{
           </div>    
           </div>
           <div>
-          <div style={{display:'flex', wrap:'no-wrap', padding:'10px'}}>
+          <div style={{display:'flex', wrap:'no-wrap', padding:'10px', justifyContent: 'space-evenly'}}>
           <Button onClick={handleEdit}>Edit</Button>
            <Popconfirm
             title="Delete the task"
@@ -148,7 +148,9 @@ const confirm= async()=>{
             okText="Yes"
             cancelText="No"
            >
-         <Button danger>Delete</Button>
+         <Button danger    
+                 style={{marginLeft: '10px'}}
+         >Delete</Button>
            </Popconfirm> 
            </div>
            </div>

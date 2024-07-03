@@ -54,21 +54,27 @@ const Blog  = () => {    const [posts, setPosts]=useState([])
     )
     
     useEffect(()=>{
-      setSearchParams(`?page=${currentPage}`)
-        const getData = async ()=>{
-        setIsLoading(true)  
-        const data =  await getArticles(currentPage)
-        console.log (data)
-        // Initialize the likes state with initial counts from the API
-        const initialLikes = data.articles.reduce((acc, article) => ({ ...acc, [article.slug]: article.favoritesCount }), {});
-        setArticleLikes(initialLikes);
-        setPosts(data.articles)
-        setInformation(data)
-        setIsLoading(false)
-      }
-      getData()
-
-    },[currentPage])
+      const fetchData = async () => {
+        try {
+          setSearchParams(`?page=${currentPage}`);
+          setIsLoading(true);
+          const data = await getArticles(currentPage);
+          console.log(data);
+    
+          // Initialize the likes state with initial counts from the API
+          const initialLikes = data.articles.reduce((acc, article) => ({ ...acc, [article.slug]: article.favoritesCount }), {});
+          setArticleLikes(initialLikes);
+          setPosts(data.articles);
+          setInformation(data);
+        } catch (error) {
+          console.error('Error fetching articles:', error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+    
+      fetchData();
+    }, [currentPage, setSearchParams]);
   
 
 
@@ -86,7 +92,7 @@ const Blog  = () => {    const [posts, setPosts]=useState([])
                         className = {classes['article-title']} >{item.title}</Link>
                     </span>
                     <span style={{paddingTop:'4px'}}>              
-                       {articleLikes[item.slug] === 1 ? <HeartFilled onClick={() => handleUnFavourite(item.slug)}/> : <HeartOutlined onClick={() =>handleFavourite(item.slug)}/>}
+                       {articleLikes[item.slug] === 1 ? <HeartFilled style = {{color:'red'}} onClick={() => handleUnFavourite(item.slug)}/> : <HeartOutlined onClick={() =>handleFavourite(item.slug)}/>}
                        <span>{articleLikes[item.slug] || 0}</span> 
                     </span>  
                   {/* <p>slug:{item.slug}</p> */}
@@ -100,7 +106,7 @@ const Blog  = () => {    const [posts, setPosts]=useState([])
                           ))
                         }
                   </span >
-                   <span style={{display:'flex', justifyContent:'flex-start' }}><p style = {{maxWidth: '600px', overflow:'hidden', textOverflow: 'ellipsis'}}>{item.description}</p></span>
+                   <span style={{display:'flex', justifyContent:'flex-start' }}><p className={classes['description']}style = {{maxWidth: '600px', overflow:'hidden', textOverflow: 'ellipsis'}}>{item.description}</p></span>
                </div> </div>
                 <div className={classes['article-item__right']}>
                   <div className={classes['article-item_right-info']}>

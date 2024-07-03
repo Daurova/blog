@@ -88,7 +88,7 @@ const NewArticle = () => {
       </Form.Item>
 
       <Form.Item
-        name="text"
+        name="body"
         label="Text"
         rules={[{ required: false }]}
       >
