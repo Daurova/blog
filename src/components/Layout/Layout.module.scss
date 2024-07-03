@@ -20,11 +20,13 @@ font-size: 18px;
     line-height: 28px;
     text-align: left;
     cursor: pointer;
+    border: 1px solid transparent;
+
   }
 
   .header-button:hover {
     color: #43911b;
-    border: 10px solid #43911b;
+    border: 1px solid #43911b;
   }
 
   .profile{

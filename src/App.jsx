@@ -15,7 +15,7 @@ import NewArticle from './pages/NewArticlePage/NewArticlePage';
 const App = () =>{
   return (
     <>
-    <div className="App">
+     <div className="App">
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route path = 'articles' element={<Blog/>}/>
@@ -32,7 +32,6 @@ const App = () =>{
       </Routes>
       
     </div>
-  
     </>
     );
 }

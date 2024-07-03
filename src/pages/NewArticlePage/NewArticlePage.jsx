@@ -1,8 +1,10 @@
-import { Button, Flex, Form, Input, Space } from 'antd';
+import { Button, Flex, Form, Input, Loading3QuartersOutlined } from 'antd';
 import { useState } from 'react';
 import { createArticle, updateArticle } from '../../services/services';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import classes from '../NewArticlePage/NewArticlePage.module.scss'
+
+
 
 const NewArticle = () => {
   const token = localStorage.getItem('token');
@@ -10,6 +12,8 @@ const NewArticle = () => {
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState('');
   const { slug } = useParams(); // Get slug from URL
+  const [isLoading, setIsLoading] = useState(false); // Add loading state
+  const navigate = useNavigate()
 
   const handleAddTag = () => {
     if (tagInput.trim() !== '') {
@@ -24,17 +28,36 @@ const NewArticle = () => {
     setTags(newTags);
   };
 
-  const onFinish = (values) => {
-    values.tagList = tags; 
-    console.log('New Article:', values, 'tags', tags);
-if(slug){
-    console.log ('the slug is here')
-    updateArticle({}=values, slug, token)
-}else{
-    createArticle({}=values, token);
-
-    
-  }}
+  const onFinish = async(values) => {
+    try {
+      setIsLoading(true); // Set loading to true before making the API call
+      values.tagList = tags; 
+      console.log('New Article:', values, 'tags', tags);
+      if(slug){
+        console.log ('the slug is here')
+        await updateArticle({}=values, slug, token)
+        navigate('/')
+      } else {
+        await createArticle({}=values, token);
+        navigate('/')
+      }
+    } catch (error) {
+      console.error('Error creating/updating article:', error);
+    } finally {
+      setIsLoading(false); // Set loading to false after the API call is complete
+    }
+  }
+//     values.tagList = tags; 
+//     console.log('New Article:', values, 'tags', tags);
+// if(slug){
+//     console.log ('the slug is here')
+//     setIsLoading(true)
+//     updateArticle({}=values, slug, token)
+// }else{
+//     setIsLoading(true)
+//     createArticle({}=values, token);
+  
+//   }}
 
   return (
     <><div className={classes['container']}>
@@ -72,14 +95,16 @@ if(slug){
         <Input.TextArea rows={6} style={{borderRadius: '6px'}} />
       </Form.Item>
 
-      <Form.Item label="Tags"
-      >
+      <Form.Item label="Tags" className={classes['tags-wrapper']}>
+
+        
           {tags.map((tag, index) => (
-            <>
+            
+            <div className ={classes['tag-wrapper']}>
             <span key={index} className={classes['tags']} >
               {tag}
             </span>
-             <Button 
+            <Button 
              style={{
                cursor: 'pointer',
                marginLeft: 8,
@@ -89,18 +114,19 @@ if(slug){
              onClick={() => handleDeleteTag(index)}
            >
              Delete
-           </Button>
-           </>
+            </Button>
+            </div>
           ))}
-          <Input
+            <div className ={classes['tag-wrapper']}>
+            <Input
             placeholder="Add a tag"
             value={tagInput}
             onChange={(e) => setTagInput(e.target.value)}
             style={{height:'40px', maxWidth:'200px'}}
           />
           <Button onClick={handleAddTag}>Add</Button>
-      </Form.Item>
-
+          </div>
+          </Form.Item>
       <Form.Item
         wrapperCol={{ offset: 0,
                        span: 8
@@ -119,94 +145,3 @@ if(slug){
 
 export default NewArticle;
 
-// import { Button, Flex, Form, Input } from 'antd';
-// // import TagsForNewArticles from '../components/TagsForNewArticles';
-// import { createArticle } from '../services/services';
-
-
-// const NewArticle  = () => {
-//     const token  = localStorage.getItem('token')
-//     const [form] = Form.useForm();
-    
-//     const onFinish = (values) => {   
-//         const tags = localStorage.getItem('tags')
-//         const tagsArray = tags.split(",").map((tag) => tag.trim());
-//         values.tagList = tagsArray
-//         console.log('New Article:', values, 'tags', tags);
-
-//         createArticle({}=values, token)
-//             };
-//     return (
-//       <Form
-//         form={form}
-//         scrollToFirstError
-//         style={{
-//           paddingBlock: 32,
-//         }}
-//         labelCol={{
-//           span: 6,
-//         }}
-//         wrapperCol={{
-//           span: 14,
-//         }}
-//         onFinish={onFinish}
-//       >
-    
-  
-//         <Form.Item
-//           name="title"
-//           label="Title"
-//           rules={[
-//             {
-//               required: false,
-//             },
-//           ]}
-//         >
-//           <Input />
-//         </Form.Item>
-  
-//         <Form.Item name="description"
-//           label="Short description"
-//           rules={[
-//             {
-//               required: false,
-//             },
-//           ]}
-//         >
-//           <Input />
-          
-//         </Form.Item>
-  
-       
-  
-//         <Form.Item
-//           name="text"
-//           label="Text"
-//           rules={[
-//             {
-//               required: false,
-//             },
-//           ]}
-//         >
-//           <Input.TextArea rows={6} />
-//         </Form.Item>
-
-//         {/* insert tags here */}
-
-
-//         <Form.Item
-//           wrapperCol={{
-//             offset: 6,
-//           }}
-//         >
-//           <Flex gap="small">
-//             <Button type="primary" htmlType="submit">
-//               Submit
-//             </Button>
-          
-//           </Flex>
-//         </Form.Item>
-//       </Form>
-//     );
-// }
-// export default NewArticle

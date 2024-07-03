@@ -25,11 +25,11 @@ const SinglePage = () => {
   }
 
 
-  const confirm = (e) => {
-    console.log(e);
-    message.success('Click on Yes');
-    deleteArticle(slug, token)
-  };
+  // const confirm = (e) => {
+  //   console.log(e);
+  //   message.success('Click on Yes');
+  //   deleteArticle(slug, token)
+  // };
   const cancel = (e) => {
     console.log(e);
     message.error('Click on No');
@@ -68,6 +68,22 @@ const handleUnFavourite = async (slug) => {
         console.error("Error disliking article:", error);
     }
 };
+
+const handleDelete = async (slug)=>{
+  try {
+    await deleteArticle(slug, token);
+    navigate('/articles')
+} catch (error) {
+    console.error("Error disliking article:", error);
+}
+}
+
+const confirm= async()=>{
+  await deleteArticle(slug, token);
+
+  navigate('/')
+}
+
   useEffect(() => {
     
     const getData = async () => {

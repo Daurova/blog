@@ -3,7 +3,7 @@ import React, { useEffect, useState, Fragment } from "react"
 import { getArticles } from "../../services/services"
 import {Pagination} from "antd"
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom"
-import {HeartOutlined, HeartFilled} from '@ant-design/icons'
+import {HeartOutlined, HeartFilled, Loader, Loading3QuartersOutlined} from '@ant-design/icons'
 import { favoriteAnArticle, unfavoriteAnArticle} from "../../services/services"
 import classes from './MainPage.module.scss'
 import { format } from 'date-fns';
@@ -16,6 +16,7 @@ const Blog  = () => {    const [posts, setPosts]=useState([])
     const [currentPage, setCurrentPage] = useState(searchParams.get('page'));
     const token = localStorage.getItem('token')
     const [articleLikes, setArticleLikes] = useState({}); // State to track likes
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleFavourite = async (slug) => {
         try {
@@ -54,7 +55,8 @@ const Blog  = () => {    const [posts, setPosts]=useState([])
     
     useEffect(()=>{
       setSearchParams(`?page=${currentPage}`)
-      const getData = async ()=>{
+        const getData = async ()=>{
+        setIsLoading(true)  
         const data =  await getArticles(currentPage)
         console.log (data)
         // Initialize the likes state with initial counts from the API
@@ -62,7 +64,7 @@ const Blog  = () => {    const [posts, setPosts]=useState([])
         setArticleLikes(initialLikes);
         setPosts(data.articles)
         setInformation(data)
-
+        setIsLoading(false)
       }
       getData()
 
@@ -72,8 +74,10 @@ const Blog  = () => {    const [posts, setPosts]=useState([])
 
     return (
         
-        <div >
-            {posts?.map((item, index) => (  
+        <div>
+          {isLoading? <Loading3QuartersOutlined/>:
+      
+          posts?.map((item, index) => (  
             <>
             <div className={classes['articles-item']} key={index}> {/* key prop should be on the outermost element */}
              <div><div style={{ overflow:'hidden', textOverflow: 'ellipsis', display: 'flex', flexDirection:'row'}}>     

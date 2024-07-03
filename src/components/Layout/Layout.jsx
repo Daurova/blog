@@ -3,6 +3,7 @@ import { getUserInfo } from "../../services/services";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from '../Layout/Layout.module.scss'
+import {toast, Bounce} from 'react-toastify'
 
 
 const Layout = ()=>{
@@ -20,7 +21,7 @@ const Layout = ()=>{
     // Clear user data from Local Storage and state
     localStorage.removeItem('token');
     localStorage.removeItem('user')
-  };
+    };
   const handleProfileClick = () => {
     navigate('/profile'); // Перенаправление на страницу профиля
   };
