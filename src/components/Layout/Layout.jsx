@@ -29,20 +29,24 @@ const Layout = ()=>{
         <>
       <header style={{backgroundColor:'white', display:'flex', justifyContent:'space-between', height:'80px', paddingTop:'0px', paddingLeft:'20px'}}>
         <span style ={{paddingTop:'15px'}}><NavLink to='/articles'className={classes['header-title']}>Realworld Blog</NavLink></span>
-        <span>  {token?(<>
-                <div onClick={handleProfileClick} className={classes['profile']}>
-                <span>{JSON.parse(localStorage.getItem('user')).username}</span>
-                <span>
-                   <img src={user.image} alt="user avatar"style={{ width: '46px', height: '46px', borderRadius: '50%' }}></img>
-                </span>
-                </div>
-                <NavLink to='/new-article' style={{fontSize:'30px'}}>
+        <span> 
+          
+           {token?(<>
+           <span style={{display:'flex', flexWrap:'nowrap', alignContent:'center', justifyContent:'space-evenly'}}>
+            <NavLink to='/new-article' style={{fontSize:'30px'}}>
                   <button style={{borderColor: '#ffffff'}}
                           className={classes['header-button']}
                            size = {'small'}>      
                     Create article
                   </button>
                 </NavLink>
+                <div onClick={handleProfileClick} className={classes['profile']}>
+                <span>{JSON.parse(localStorage.getItem('user')).username}</span>
+                <span>
+                   <img src={user.image} alt="user avatar"style={{ width: '46px', height: '46px', borderRadius: '50%', marginLeft: '5px' }}></img>
+                </span>
+                </div>
+               
                 <NavLink to='/articles'>
                   <button style={{borderColor: '#ffffff'}}
                           onClick = {handleSignOut}
@@ -51,6 +55,7 @@ const Layout = ()=>{
                     Sign Out
                   </button>
                 </NavLink>
+                </span>
                 </>
         ):(
           <>

@@ -2,6 +2,8 @@ import { UploadOutlined } from '@ant-design/icons';
 import { updateUser } from '../../services/services';
 import { useNavigate } from 'react-router-dom';
 import { Button, Form, Input, InputNumber } from 'antd';
+import classes from '../ProfilePage/ProfilePage.module.scss'
+
 const layout = {
   labelCol: {
     span: 8,
@@ -36,10 +38,22 @@ const Profile  = () => {
   const navigate = useNavigate()
  
       return(
+        <><div className={classes['container']}>
+          <h2 className={classes['header']}>Edit profile</h2>
+
         <Form
         {...layout}
         name="nest-messages"
         onFinish={onFinish}
+        layout='vertical'
+        labelCol={{
+          span: 23,
+    
+        }}
+        wrapperCol={{
+          span: 23,
+          height: 68
+        }}
         style={{
           maxWidth: 600,
         }}
@@ -54,7 +68,7 @@ const Profile  = () => {
             },
           ]}
         >
-          <Input />
+          <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
         </Form.Item>
         <Form.Item
           name={['user', 'email']}
@@ -65,7 +79,7 @@ const Profile  = () => {
             },
           ]}
         >
-          <Input />
+          <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
         </Form.Item>
         <Form.Item
       label="Password"
@@ -76,23 +90,24 @@ const Profile  = () => {
         },
       ]}
     >
-      <Input.Password />
-    </Form.Item>
-        <Form.Item name={['user', 'image']} label="Url">
-          <Input />
+      <Input.Password style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
+    </Form.Item >
+        <Form.Item name={['user', 'image']} label="Image Url">
+          <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
         </Form.Item>
        
         <Form.Item
           wrapperCol={{
-            ...layout.wrapperCol,
-            offset: 8,
+            span: 23,
+            offset: 0,
           }}
         >
-          <Button type="primary" htmlType="submit">
-            Submit
+          <Button type="primary" block htmlType="submit" style={{height:'40px', borderRadius: '6px'}}>
+            Save
           </Button>
         </Form.Item>
       </Form>
+      </div></>
       )
 }
 export default Profile

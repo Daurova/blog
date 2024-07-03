@@ -2,7 +2,7 @@ import { Button, Flex, Form, Input, Space } from 'antd';
 import { useState } from 'react';
 import { createArticle, updateArticle } from '../../services/services';
 import { useParams } from "react-router-dom";
-
+import classes from '../NewArticlePage/NewArticlePage.module.scss'
 
 const NewArticle = () => {
   const token = localStorage.getItem('token');
@@ -37,12 +37,14 @@ if(slug){
   }}
 
   return (
+    <><div className={classes['container']}>
        <Form
       form={form}
       scrollToFirstError
+      layout='vertical'
       style={{ paddingBlock: 32 }}
-      labelCol={{ span: 6 }}
-      wrapperCol={{ span: 14 }}
+      labelCol={{ span: 23 }}
+      wrapperCol={{ span: 23 }}
       onFinish={onFinish}
     >
       <Form.Item
@@ -97,15 +99,18 @@ if(slug){
       </Form.Item>
 
       <Form.Item
-        wrapperCol={{ offset: 6 }}
+        wrapperCol={{ offset: 0,
+                       span: 8
+         }}
       >
         <Flex gap="small">
-          <Button type="primary" htmlType="submit">
-            Submit
+          <Button type="primary" block htmlType="submit">
+            Send
           </Button>
         </Flex>
       </Form.Item>
     </Form>
+    </div></>
   );
 };
 
