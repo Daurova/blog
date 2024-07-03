@@ -26,3 +26,11 @@ font-size: 18px;
     color: #43911b;
     border: 10px solid #43911b;
   }
+
+  .profile{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+
+  }

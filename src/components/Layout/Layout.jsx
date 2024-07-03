@@ -30,8 +30,11 @@ const Layout = ()=>{
       <header style={{backgroundColor:'white', display:'flex', justifyContent:'space-between', height:'80px', paddingTop:'0px', paddingLeft:'20px'}}>
         <span style ={{paddingTop:'15px'}}><NavLink to='/articles'className={classes['header-title']}>Realworld Blog</NavLink></span>
         <span>  {token?(<>
-                <div onClick={handleProfileClick}>{localStorage.getItem('user')}
-                  <img src={user.image} alt="user avatar"style={{ width: '20%', height: '20%' }}></img>
+                <div onClick={handleProfileClick} className={classes['profile']}>
+                <span>{JSON.parse(localStorage.getItem('user')).username}</span>
+                <span>
+                   <img src={user.image} alt="user avatar"style={{ width: '46px', height: '46px', borderRadius: '50%' }}></img>
+                </span>
                 </div>
                 <NavLink to='/new-article' style={{fontSize:'30px'}}>
                   <button style={{borderColor: '#ffffff'}}

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select } from 'antd'
 import { registerNewUser } from "../../services/services";
-
+import classes from '../SignUpPage/SignUpPage.module.scss'
 
 const { Option } = Select;
 const residences = [
@@ -111,18 +111,26 @@ const SignUp = () => {
   
     return (
         <>
-        <h2>Create new account</h2>
+        <div className={classes['container']}>
+        <h2 style={{fontWeight:'500px', fontSize:'20px', marginTop:'0px'}}>Create new account</h2>
         <Form
         {...formItemLayout}
         form={form}
         name="register"
+        layout='vertical'
+        labelCol={{
+          span: 23,
+    
+        }}
+        wrapperCol={{
+          span: 23,
+          height: 68
+        }}
         onFinish={onFinish}
         initialValues={{
           email: ['est@test.ru'],
         }}
-        style={{
-          maxWidth: 600,
-        }}
+       
         scrollToFirstError
       >
         <Form.Item
@@ -137,7 +145,7 @@ const SignUp = () => {
             },
           ]}
         >
-          <Input />
+          <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
         </Form.Item>
         <Form.Item
           name="email"
@@ -154,7 +162,7 @@ const SignUp = () => {
             },
           ]}
         >
-          <Input />
+          <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
         </Form.Item>
   
         <Form.Item
@@ -168,7 +176,7 @@ const SignUp = () => {
           ]}
           hasFeedback
         >
-          <Input.Password />
+          <Input.Password style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
         </Form.Item>
   
         <Form.Item
@@ -191,31 +199,39 @@ const SignUp = () => {
             }),
           ]}
         >
-          <Input.Password />
+          <Input.Password style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
         </Form.Item>
  
   
         <Form.Item
           name="agreement"
           valuePropName="checked"
+          labelCol={{
+            span: 23
+          }}
           rules={[
             {
               validator: (_, value) =>
                 value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
             },
           ]}
-          {...tailFormItemLayout}
         >
-          <Checkbox>
+          <Checkbox style={{marginLeft:'0px'}}>
             I have read the <a href="">agreement</a>
           </Checkbox>
         </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
+        <Form.Item {...tailFormItemLayout}
+        wrapperCol={{
+          offset: 0,
+          span: 23,
+        }}
+        >
+          <Button type="primary" block htmlType="submit" style={{height:'40px', borderRadius: '6px'}}>
             Register
          </Button>
         </Form.Item>
       </Form>
+      </div>
       </>
     );
 }
