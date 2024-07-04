@@ -47,17 +47,6 @@ const NewArticle = () => {
       setIsLoading(false); // Set loading to false after the API call is complete
     }
   }
-//     values.tagList = tags; 
-//     console.log('New Article:', values, 'tags', tags);
-// if(slug){
-//     console.log ('the slug is here')
-//     setIsLoading(true)
-//     updateArticle({}=values, slug, token)
-// }else{
-//     setIsLoading(true)
-//     createArticle({}=values, token);
-  
-//   }}
 
   return (
     <><div className={classes['container']}>
