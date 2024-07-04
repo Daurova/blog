@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from 'react'
 import { getArticles } from '../../services/services'
 import {Pagination} from 'antd'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import {HeartOutlined, HeartFilled, Loading3QuartersOutlined} from '@ant-design/icons'
 import { format } from 'date-fns';
 import { favoriteAnArticle, unfavoriteAnArticle} from '../../services/services'

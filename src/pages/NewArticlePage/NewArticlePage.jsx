@@ -1,4 +1,4 @@
-import { Button, Flex, Form, Input, Loading3QuartersOutlined } from 'antd';
+import { Button, Flex, Form, Input } from 'antd';
 import { useState } from 'react';
 import { createArticle, updateArticle } from '../../services/services';
 import { useParams, useNavigate } from 'react-router-dom';

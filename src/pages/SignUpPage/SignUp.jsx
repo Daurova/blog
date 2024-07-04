@@ -73,7 +73,7 @@ const tailFormItemLayout = {
 
 const SignUp = () => {
     const navigate = useNavigate();
-    const [isSignedUp, setIsSignedUp] = useState(false);
+    const [setIsSignedUp] = useState(false);
 
     const [form] = Form.useForm();
     const onFinish = async(values) => {
