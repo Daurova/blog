@@ -15,19 +15,19 @@ import NewArticle from './pages/NewArticlePage/NewArticlePage';
 const App = () =>{
   return (
     <>
-     <div className="App">
+     <div className='App'>
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route path = 'articles' element={<Blog/>}/>
           <Route path = '/' element={<Blog/>}/>
-          <Route path="/articles/:slug" element={<SinglePage/>}/>
-          <Route path="signin" element={<SignIn/>}/>
-          <Route path="signup" element={<SignUp/>}/>
+          <Route path='/articles/:slug' element={<SinglePage/>}/>
+          <Route path='signin' element={<SignIn/>}/>
+          <Route path='signup' element={<SignUp/>}/>
           <Route path = 'signedup' element = {<SignUpUser><Blog/></SignUpUser>}/>
           <Route path = 'profile' element = {<Profile/>}/>
           <Route path = 'new-article' element = {<NewArticle/>}/>
           <Route path = 'articles/:slug/edit' element = {<NewArticle/>}/>
-          <Route  path="*" element={<NotFound/>}/>  
+          <Route  path='*' element={<NotFound/>}/>  
         </Route>
       </Routes>
       

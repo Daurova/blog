@@ -1,10 +1,10 @@
 
-import React, { useEffect, useState, Fragment } from "react"
-import { getArticles } from "../../services/services"
-import {Pagination} from "antd"
-import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom"
+import React, { useEffect, useState, Fragment } from 'react'
+import { getArticles } from '../../services/services'
+import {Pagination} from 'antd'
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import {HeartOutlined, HeartFilled, Loader, Loading3QuartersOutlined} from '@ant-design/icons'
-import { favoriteAnArticle, unfavoriteAnArticle} from "../../services/services"
+import { favoriteAnArticle, unfavoriteAnArticle} from '../../services/services'
 import classes from './MainPage.module.scss'
 import { format } from 'date-fns';
 
@@ -30,7 +30,7 @@ const Blog  = () => {    const [posts, setPosts]=useState([])
             // Always set articleLikes to 1 
             setArticleLikes(prevLikes => ({ ...prevLikes, [slug]: 1 }));
         } catch (error) {
-            console.error("Error liking/unliking article:", error);
+            console.error('Error liking/unliking article:', error);
         }
     };
 
@@ -43,7 +43,7 @@ const Blog  = () => {    const [posts, setPosts]=useState([])
                 [slug]: prevLikes[slug] > 1 ? prevLikes[slug] - 1 : 0
             }));
         } catch (error) {
-            console.error("Error disliking article:", error);
+            console.error('Error disliking article:', error);
         }
     };
 
@@ -114,7 +114,7 @@ const Blog  = () => {    const [posts, setPosts]=useState([])
                    <p style={{fontSize: '12px', margin:'0px', padding:'0px', paddingRight:'6px'}}>{format(new Date(item.createdAt), 'MMMM dd, yyyy')}</p>
                   </div>
                   <div className={classes['article-item_right-image']}>    
-                   <p><img src={item.author.image} alt="Author" className={classes['article-image']}></img></p>
+                   <p><img src={item.author.image} alt='Author' className={classes['article-image']}></img></p>
                   </div>
                 </div>
                 </div>

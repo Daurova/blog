@@ -49,7 +49,7 @@ const Profile  = () => {
 
         <Form
         {...layout}
-        name="nest-messages"
+        name='nest-messages'
         onFinish={onFinish}
         layout='vertical'
         labelCol={{
@@ -67,7 +67,7 @@ const Profile  = () => {
       >
         <Form.Item
           name={['user', 'username']}
-          label="Name"
+          label='Name'
           rules={[
             {
               required: true,
@@ -78,7 +78,7 @@ const Profile  = () => {
         </Form.Item>
         <Form.Item
           name={['user', 'email']}
-          label="Email"
+          label='Email'
           rules={[
             {
               type: 'email',
@@ -88,7 +88,7 @@ const Profile  = () => {
           <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
         </Form.Item>
         <Form.Item
-      label="Password"
+      label='Password'
       name={['user', 'password']}
       rules={[
         {
@@ -98,7 +98,7 @@ const Profile  = () => {
     >
       <Input.Password style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
     </Form.Item >
-        <Form.Item name={['user', 'image']} label="Image Url">
+        <Form.Item name={['user', 'image']} label='Image Url'>
           <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
         </Form.Item>
        
@@ -108,7 +108,7 @@ const Profile  = () => {
             offset: 0,
           }}
         >
-          <Button type="primary" block htmlType="submit" style={{height:'40px', borderRadius: '6px'}}>
+          <Button type='primary' block htmlType='submit' style={{height:'40px', borderRadius: '6px'}}>
             Save
           </Button>
         </Form.Item>

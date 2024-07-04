@@ -1,8 +1,8 @@
-import React from "react"
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from 'react'
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select } from 'antd'
-import { registerNewUser } from "../../services/services";
+import { registerNewUser } from '../../services/services';
 import classes from '../SignUpPage/SignUpPage.module.scss'
 
 const { Option } = Select;
@@ -116,7 +116,7 @@ const SignUp = () => {
         <Form
         {...formItemLayout}
         form={form}
-        name="register"
+        name='register'
         layout='vertical'
         labelCol={{
           span: 23,
@@ -134,9 +134,9 @@ const SignUp = () => {
         scrollToFirstError
       >
         <Form.Item
-          name="username"
-          label="Username"
-          tooltip="Some username"
+          name='username'
+          label='Username'
+          tooltip='Some username'
           rules={[
             {
               required: true,
@@ -148,8 +148,8 @@ const SignUp = () => {
           <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
         </Form.Item>
         <Form.Item
-          name="email"
-          label="E-mail"
+          name='email'
+          label='E-mail'
           message = ''
           rules={[
             {
@@ -166,8 +166,8 @@ const SignUp = () => {
         </Form.Item>
   
         <Form.Item
-          name="password"
-          label="Password"
+          name='password'
+          label='Password'
           rules={[
             {
               required: true,
@@ -180,8 +180,8 @@ const SignUp = () => {
         </Form.Item>
   
         <Form.Item
-          name="confirm"
-          label="Confirm Password"
+          name='confirm'
+          label='Confirm Password'
           dependencies={['password']}
           hasFeedback
           rules={[
@@ -204,8 +204,8 @@ const SignUp = () => {
  
   
         <Form.Item
-          name="agreement"
-          valuePropName="checked"
+          name='agreement'
+          valuePropName='checked'
           labelCol={{
             span: 23
           }}
@@ -217,7 +217,7 @@ const SignUp = () => {
           ]}
         >
           <Checkbox style={{marginLeft:'0px'}}>
-            I have read the <a href="">agreement</a>
+            I have read the <a href=''>agreement</a>
           </Checkbox>
         </Form.Item>
         <Form.Item {...tailFormItemLayout}
@@ -226,7 +226,7 @@ const SignUp = () => {
           span: 23,
         }}
         >
-          <Button type="primary" block htmlType="submit" style={{height:'40px', borderRadius: '6px'}}>
+          <Button type='primary' block htmlType='submit' style={{height:'40px', borderRadius: '6px'}}>
             Register
          </Button>
         </Form.Item>

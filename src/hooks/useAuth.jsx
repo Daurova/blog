@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react"
-import { getUserInfo, userLogin } from "../services/services"
-import { useNavigate } from "react-router-dom"
+import { useState, useEffect } from 'react'
+import { getUserInfo, userLogin } from '../services/services'
+import { useNavigate } from 'react-router-dom'
 
 export const useAuth = ()=>{
     const [isAuth, setIsAuth] = useState(false)

@@ -1,7 +1,7 @@
-import React, { useEffect } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
+import React, { useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Button, Checkbox, Form, Input } from 'antd';
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from '../../hooks/useAuth';
 import classes from '../SignInPage/SignInPage.module.scss'
 
 
@@ -23,8 +23,8 @@ const SignIn  = () => {
 <div className={classes['container']} >
   <div style={{fontWeight:'500px', fontSize:'20px'}}>Sign In</div>
   <Form
-    name="basic"
-    layout="vertical"
+    name='basic'
+    layout='vertical'
     labelCol={{
       span: 8,
 
@@ -42,11 +42,11 @@ const SignIn  = () => {
     }}
     onFinish={onFinish}
     onFinishFailed={onFinishFailed}
-    autoComplete="off"
+    autoComplete='off'
   >
     <Form.Item
-       name="email"
-       label="E-mail"
+       name='email'
+       label='E-mail'
        rules={[
          {
            type: 'email',
@@ -62,8 +62,8 @@ const SignIn  = () => {
     </Form.Item>
 
     <Form.Item
-      label="Password"
-      name="password"
+      label='Password'
+      name='password'
 
       rules={[
         {
@@ -82,7 +82,7 @@ const SignIn  = () => {
         span: 23,
       }}
     >
-      <Button type="primary" block htmlType="submit" style={{height:'40px', borderRadius: '6px'}}>
+      <Button type='primary' block htmlType='submit' style={{height:'40px', borderRadius: '6px'}}>
         Login
       </Button>
     </Form.Item>

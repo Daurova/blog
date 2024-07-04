@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getArticle } from "../../services/services";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getArticle } from '../../services/services';
 import Markdown from 'react-markdown'
-import { Button, message, Popconfirm } from "antd";
-import { useNavigate } from "react-router-dom";
-import { deleteArticle } from "../../services/services";
-import { favoriteAnArticle, unfavoriteAnArticle} from "../../services/services"
+import { Button, message, Popconfirm } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { deleteArticle } from '../../services/services';
+import { favoriteAnArticle, unfavoriteAnArticle} from '../../services/services'
 import {HeartOutlined, HeartFilled} from '@ant-design/icons'
 import classes from '../SinglePage/SinglePage.module.scss'
-import { format } from "date-fns";
+import { format } from 'date-fns';
 
 
 
@@ -52,7 +52,7 @@ const SinglePage = () => {
         // Always set articleLikes to 1 
         setArticleLikes(prevLikes => ({ ...prevLikes, [slug]: 1 }));
     } catch (error) {
-        console.error("Error liking/unliking article:", error);
+        console.error('Error liking/unliking article:', error);
     }
 };
 
@@ -65,7 +65,7 @@ const handleUnFavourite = async (slug) => {
             [slug]: prevLikes[slug] >1 ? prevLikes[slug] - 1 : 0
         }));
     } catch (error) {
-        console.error("Error disliking article:", error);
+        console.error('Error disliking article:', error);
     }
 };
 
@@ -74,7 +74,7 @@ const handleDelete = async (slug)=>{
     await deleteArticle(slug, token);
     navigate('/articles')
 } catch (error) {
-    console.error("Error disliking article:", error);
+    console.error('Error disliking article:', error);
 }
 }
 
@@ -92,7 +92,7 @@ const confirm= async()=>{
         setArticle(data); 
         setArticleLikes({ [slug]: data.article.favoritesCount });
       } catch (error) {
-        console.error("Error fetching article:", error);
+        console.error('Error fetching article:', error);
       }
     };
     getData();
@@ -141,12 +141,12 @@ const confirm= async()=>{
           <div style={{display:'flex', wrap:'no-wrap', padding:'10px', justifyContent: 'space-evenly'}}>
           <Button onClick={handleEdit}>Edit</Button>
            <Popconfirm
-            title="Delete the task"
-            description="Are you sure to delete this task?"
+            title='Delete the task'
+            description='Are you sure to delete this task?'
             onConfirm={confirm}
             onCancel={cancel}
-            okText="Yes"
-            cancelText="No"
+            okText='Yes'
+            cancelText='No'
            >
          <Button danger    
                  style={{marginLeft: '10px'}}

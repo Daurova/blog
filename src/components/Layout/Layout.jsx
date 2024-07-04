@@ -1,24 +1,24 @@
-import { NavLink, Outlet } from "react-router-dom";
-import { getUserInfo } from "../../services/services";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import classes from "../Layout/Layout.module.scss";
-import { toast, Bounce } from "react-toastify";
-import { Loading3QuartersOutlined } from "@ant-design/icons";
+import { NavLink, Outlet } from 'react-router-dom';
+import { getUserInfo } from '../../services/services';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import classes from '../Layout/Layout.module.scss';
+import { toast, Bounce } from 'react-toastify';
+import { Loading3QuartersOutlined } from '@ant-design/icons';
 
 const Layout = () => {
   const { userDetails, setUserDetails } = useState(null);
   const { isLoaded, setIsLoaded } = useState(false);
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
-  const user = JSON.parse(localStorage.getItem("user"));
+  const token = localStorage.getItem('token');
+  const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
         await getUserInfo(token);
       } catch (error) {
-        console.error("Error fetching user info:", error);
+        console.error('Error fetching user info:', error);
       }
     };
 
@@ -27,28 +27,28 @@ const Layout = () => {
 
   const handleSignOut = () => {
     // Clear user data from Local Storage and state
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   };
 
   const handleProfileClick = () => {
-    navigate("/profile"); // Перенаправление на страницу профиля
+    navigate('/profile'); // Перенаправление на страницу профиля
   };
 
   return (
     <>
       <header
         style={{
-          backgroundColor: "white",
-          display: "flex",
-          justifyContent: "space-between",
-          height: "80px",
-          paddingTop: "0px",
-          paddingLeft: "20px",
+          backgroundColor: 'white',
+          display: 'flex',
+          justifyContent: 'space-between',
+          height: '80px',
+          paddingTop: '0px',
+          paddingLeft: '20px',
         }}
       >
-        <span style={{ paddingTop: "15px" }}>
-          <NavLink to="/articles" className={classes["header-title"]}>
+        <span style={{ paddingTop: '15px' }}>
+          <NavLink to='/articles' className={classes['header-title']}>
             Realworld Blog
           </NavLink>
         </span>
@@ -57,42 +57,42 @@ const Layout = () => {
             <>
               <span
                 style={{
-                  display: "flex",
-                  flexWrap: "nowrap",
-                  alignContent: "center",
-                  justifyContent: "space-evenly",
+                  display: 'flex',
+                  flexWrap: 'nowrap',
+                  alignContent: 'center',
+                  justifyContent: 'space-evenly',
                 }}
               >
-                <NavLink to="/new-article" style={{ fontSize: "30px" }}>
+                <NavLink to='/new-article' style={{ fontSize: '30px' }}>
                   <button
-                    style={{ borderColor: "#ffffff" }}
-                    className={classes["header-button"]}
-                    size={"small"}
+                    style={{ borderColor: '#ffffff' }}
+                    className={classes['header-button']}
+                    size={'small'}
                   >
                     Create article
                   </button>
                 </NavLink>
-                <div onClick={handleProfileClick} className={classes["profile"]}>
-                  <span>{JSON.parse(localStorage.getItem("user")).username}</span>
+                <div onClick={handleProfileClick} className={classes['profile']}>
+                  <span>{JSON.parse(localStorage.getItem('user')).username}</span>
                   <span>
                     <img
                       src={user.image}
-                      alt="user avatar"
+                      alt='user avatar'
                       style={{
-                        width: "46px",
-                        height: "46px",
-                        borderRadius: "50%",
-                        marginLeft: "5px",
+                        width: '46px',
+                        height: '46px',
+                        borderRadius: '50%',
+                        marginLeft: '5px',
                       }}
                     ></img>
                   </span>
                 </div>
-                <NavLink to="/articles">
+                <NavLink to='/articles'>
                   <button
-                    style={{ borderColor: "#ffffff" }}
+                    style={{ borderColor: '#ffffff' }}
                     onClick={handleSignOut}
-                    size="large"
-                    className={classes["header-button"]}
+                    size='large'
+                    className={classes['header-button']}
                   >
                     Sign Out
                   </button>
@@ -101,18 +101,18 @@ const Layout = () => {
             </>
           ) : (
             <>
-              <NavLink to="/signin">
+              <NavLink to='/signin'>
                 <button
-                  style={{ borderColor: "#ffffff" }}
-                  className={classes["header-button"]}
+                  style={{ borderColor: '#ffffff' }}
+                  className={classes['header-button']}
                 >
                   Sign In
                 </button>
               </NavLink>
-              <NavLink to="/signup">
+              <NavLink to='/signup'>
                 <button
-                  style={{ borderColor: "#ffffff" }}
-                  className={classes["header-button"]}
+                  style={{ borderColor: '#ffffff' }}
+                  className={classes['header-button']}
                 >
                   Sign Up
                 </button>
@@ -121,10 +121,10 @@ const Layout = () => {
           )}
         </span>
       </header>
-      <main className="container">
+      <main className='container'>
         <Outlet />
       </main>
-      <footer style={{ marginTop: "20px", width: "0px" }}></footer>
+      <footer style={{ marginTop: '20px', width: '0px' }}></footer>
     </>
   );
 };

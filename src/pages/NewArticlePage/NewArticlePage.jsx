@@ -1,7 +1,7 @@
 import { Button, Flex, Form, Input, Loading3QuartersOutlined } from 'antd';
 import { useState } from 'react';
 import { createArticle, updateArticle } from '../../services/services';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from 'react-router-dom';
 import classes from '../NewArticlePage/NewArticlePage.module.scss'
 
 
@@ -61,30 +61,30 @@ const NewArticle = () => {
       onFinish={onFinish}
     >
       <Form.Item
-        name="title"
-        label="Title"
+        name='title'
+        label='Title'
         rules={[{ required: false }]}
       >
         <Input style={{height:'40px', borderRadius: '6px'}} />
       </Form.Item>
 
       <Form.Item
-        name="description"
-        label="Short description"
+        name='description'
+        label='Short description'
         rules={[{ required: false }]}
       >
         <Input style={{height:'40px', borderRadius: '6px'}}/>
       </Form.Item>
 
       <Form.Item
-        name="body"
-        label="Text"
+        name='body'
+        label='Text'
         rules={[{ required: false }]}
       >
         <Input.TextArea rows={6} style={{borderRadius: '6px'}} />
       </Form.Item>
 
-      <Form.Item label="Tags" className={classes['tags-wrapper']}>
+      <Form.Item label='Tags' className={classes['tags-wrapper']}>
 
         
           {tags.map((tag, index) => (
@@ -108,7 +108,7 @@ const NewArticle = () => {
           ))}
             <div className ={classes['tag-wrapper']}>
             <Input
-            placeholder="Add a tag"
+            placeholder='Add a tag'
             value={tagInput}
             onChange={(e) => setTagInput(e.target.value)}
             style={{height:'40px', maxWidth:'200px'}}
@@ -121,8 +121,8 @@ const NewArticle = () => {
                        span: 8
          }}
       >
-        <Flex gap="small">
-          <Button type="primary" block htmlType="submit" style={{height: '40px'}} >
+        <Flex gap='small'>
+          <Button type='primary' block htmlType='submit' style={{height: '40px'}} >
             Send
           </Button>
         </Flex>
