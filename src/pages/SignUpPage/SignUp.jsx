@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select } from 'antd'
+import { useNavigate } from 'react-router-dom';
+import { Button, Checkbox, Form, Input, Select } from 'antd'
 import { registerNewUser } from '../../services/services';
 import classes from '../SignUpPage/SignUpPage.module.scss'
 

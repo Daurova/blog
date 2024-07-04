@@ -69,14 +69,14 @@ const handleUnFavourite = async (slug) => {
     }
 };
 
-const handleDelete = async (slug)=>{
-  try {
-    await deleteArticle(slug, token);
-    navigate('/articles')
-} catch (error) {
-    console.error('Error disliking article:', error);
-}
-}
+// const handleDelete = async (slug)=>{
+//   try {
+//     await deleteArticle(slug, token);
+//     navigate('/articles')
+// } catch (error) {
+//     console.error('Error disliking article:', error);
+// }
+// }
 
 const confirm= async()=>{
   await deleteArticle(slug, token);

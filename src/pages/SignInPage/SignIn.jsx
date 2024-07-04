@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Form, Input } from 'antd';
 import { useAuth } from '../../hooks/useAuth';
 import classes from '../SignInPage/SignInPage.module.scss'
 
