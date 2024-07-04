@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-import { getUserInfo, userLogin } from '../services/services'
+// import { getUserInfo, userLogin } from '../services/services'
 import { useNavigate } from 'react-router-dom'
 
 export const useAuth = ()=>{
     const [isAuth, setIsAuth] = useState(false)
-    const [user, setUser] = useState(null)
+    const [user] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
-    const [error, setError]= useState(null)
+    // const [error, setError]= useState(null)
     const [token, setToken] = useState(null)
     const navigate = useNavigate()
 

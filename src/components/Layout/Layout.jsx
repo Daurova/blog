@@ -1,14 +1,16 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { getUserInfo } from '../../services/services';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+// import { toast, Bounce } from 'react-toastify';
+// import { Loading3QuartersOutlined } from '@ant-design/icons';
+import { getUserInfo } from '../../services/services';
 import classes from '../Layout/Layout.module.scss';
-import { toast, Bounce } from 'react-toastify';
-import { Loading3QuartersOutlined } from '@ant-design/icons';
+
+
 
 const Layout = () => {
-  const { userDetails, setUserDetails } = useState(null);
-  const { isLoaded, setIsLoaded } = useState(false);
+  // const { userDetails, setUserDetails } = useState(null);
+  // const { isLoaded, setIsLoaded } = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
   const user = JSON.parse(localStorage.getItem('user'));

@@ -1,17 +1,17 @@
-
 import React, { useEffect, useState, Fragment } from 'react'
 import { getArticles } from '../../services/services'
 import {Pagination} from 'antd'
-import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import {HeartOutlined, HeartFilled, Loader, Loading3QuartersOutlined} from '@ant-design/icons'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import {HeartOutlined, HeartFilled, Loading3QuartersOutlined} from '@ant-design/icons'
+import { format } from 'date-fns';
 import { favoriteAnArticle, unfavoriteAnArticle} from '../../services/services'
 import classes from './MainPage.module.scss'
-import { format } from 'date-fns';
+
 
 
 const Blog  = () => {    const [posts, setPosts]=useState([])
     const [information, setInformation]=useState([])
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams()
     const [currentPage, setCurrentPage] = useState(searchParams.get('page'));
     const token = localStorage.getItem('token')
