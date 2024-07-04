@@ -17,6 +17,7 @@ const Layout = () => {
   const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
+    if (token) {
     const fetchUserInfo = async () => {
       try {
         await getUserInfo(token);
@@ -25,7 +26,7 @@ const Layout = () => {
       }
     };
 
-    fetchUserInfo();
+    fetchUserInfo();}
   }, [token]);
 
   const handleSignOut = () => {

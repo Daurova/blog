@@ -10,14 +10,14 @@ export const useAuth = ()=>{
     const [token, setToken] = useState(null)
     const navigate = useNavigate()
 
-    useEffect(() => {
-        const token = localStorage.getItem('token', 'user');
-        if (token) {
-         console.log(token, user)
+    // useEffect(() => {
+    //     const token = localStorage.getItem('token', 'user');
+    //     if (token) {
+    //      console.log(token, user)
 
-        }
+    //     }
       
-    }, [token]);
+    // }, [token]);
 
     const auth = async(authForm)=>{
         setIsLoading(true)

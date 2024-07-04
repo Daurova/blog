@@ -59,9 +59,7 @@ const Blog  = () => {    const [posts, setPosts]=useState([])
           setSearchParams(`?page=${currentPage}`);
           setIsLoading(true);
           const data = await getArticles(currentPage);
-          console.log(data);
-    
-          // Initialize the likes state with initial counts from the API
+          console.log(data);    
           const initialLikes = data.articles.reduce((acc, article) => ({ ...acc, [article.slug]: article.favoritesCount }), {});
           setArticleLikes(initialLikes);
           setPosts(data.articles);
@@ -85,7 +83,7 @@ const Blog  = () => {    const [posts, setPosts]=useState([])
       
           posts?.map((item, index) => (  
             <>
-            <div className={classes['articles-item']} key={index}> {/* key prop should be on the outermost element */}
+            <div className={classes['articles-item']} key={`${index}-${item.slug}`}> 
              <div><div style={{ overflow:'hidden', textOverflow: 'ellipsis', display: 'flex', flexDirection:'row'}}>     
                     <span style = {{maxWidth: '600px', overflow:'hidden', textOverflow: 'ellipsis'}}>
                       <Link to = {`/articles/${item.slug}`} 
@@ -101,7 +99,7 @@ const Blog  = () => {    const [posts, setPosts]=useState([])
                   <span style={{display:'flex', justifyContent:'flex-start'}}>
                        {item.tagList.map((tag, tagIndex) => (
                          tag !== null ? (
-                           <span className={classes['tag']} key={tagIndex}>{tag}</span>
+                           <span className={classes['tag']} key={`${item.slug}-${tagIndex}`}>{tag}</span>
                             ) : null
                           ))
                         }

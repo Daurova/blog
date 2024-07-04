@@ -138,6 +138,7 @@ const confirm= async()=>{
           </div>    
           </div>
           <div>
+          {token && (
           <div style={{display:'flex', wrap:'no-wrap', padding:'10px', justifyContent: 'space-evenly'}}>
           <Button onClick={handleEdit}>Edit</Button>
            <Popconfirm
@@ -153,6 +154,7 @@ const confirm= async()=>{
          >Delete</Button>
            </Popconfirm> 
            </div>
+          )}
            </div>
         </div>
         

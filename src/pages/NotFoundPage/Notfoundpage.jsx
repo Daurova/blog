@@ -5,7 +5,7 @@ const NotFound  = () => {
         <div>
             <h1>
                 <p>
-                    this is a notfound  with react-router
+                    this is a notfound page
                 </p>
             </h1>
         </div>
