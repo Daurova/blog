@@ -1,23 +1,38 @@
 import { useState, useEffect } from 'react'
-import { userLogin } from '../services/services'
+import { getUserInfo, userLogin } from '../services/services'
 import { useNavigate } from 'react-router-dom'
 
 export const useAuth = ()=>{
     const [isAuth, setIsAuth] = useState(false)
-    const [user] = useState(null)
+    const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     // const [error, setError]= useState(null)
     const [token, setToken] = useState(null)
     const navigate = useNavigate()
 
-    // useEffect(() => {
-    //     const token = localStorage.getItem('token', 'user');
-    //     if (token) {
-    //      console.log(token, user)
-
-    //     }
+    useEffect(() => {
+     
+    }, [token]);
+    const checkAuth = async()=>{
+        const token = localStorage.getItem('token');
+        const userInfo = JSON.parse(localStorage.getItem('user'));
+  
+        if (token && userInfo) {
+          setIsAuth(true);
+          setUser(userInfo);
+        } else {
+          setIsAuth(false);
+          setUser(null);
+        }
+        if (token)  {
+            try {
+              await getUserInfo(token);
+            } catch (error) {
+              console.error('Error fetching user info:', error);
+            }
+          };
       
-    // }, [token]);
+    }
 
     const auth = async(authForm)=>{
         setIsLoading(true)
@@ -36,6 +51,5 @@ export const useAuth = ()=>{
            setIsLoading(false)
     }
     return{
-        auth, isAuth, user, isLoading, token   }
+        auth, isAuth, user, isLoading, token , checkAuth  }
 }
-//в useeffect get token  from lc, before auth()9str

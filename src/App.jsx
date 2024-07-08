@@ -12,24 +12,11 @@ import Layout from './components/Layout/Layout';
 import SignUpUser from './hoc/SignUpUser';
 import Profile from './pages/ProfilePage/ProfilePage';
 import NewArticle from './pages/NewArticlePage/NewArticlePage';
+import EditArticle from './pages/EditArticlePage/EditArticlePage';
 
 
 const App = () =>{
-  const [isAuth, setIsAuth] = useState(false);
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const userInfo = JSON.parse(localStorage.getItem('user'));
-
-    if (token && userInfo) {
-      setIsAuth(true);
-      setUser(userInfo);
-    } else {
-      setIsAuth(false);
-      setUser(null);
-    }
-  }, []);
+  
   return (
     <>
      <div className='App'>

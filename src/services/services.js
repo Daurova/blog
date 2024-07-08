@@ -88,7 +88,7 @@ export const getUserInfo = async (key) => {
   }
 
   const result = await data.json();
-  console.log(result.user);
+  localStorage.setItem('user', JSON.stringify(result.user));
   return result.user;
 };
 

@@ -1,11 +1,12 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // import { toast, Bounce } from 'react-toastify';
 // import { Loading3QuartersOutlined } from '@ant-design/icons';
 import { getUserInfo } from '../../services/services';
 import classes from '../Layout/Layout.module.scss';
+import { useAuth } from '../../hooks/useAuth';
 
 
 
@@ -13,21 +14,11 @@ const Layout = () => {
   // const { userDetails, setUserDetails } = useState(null);
   // const { isLoaded, setIsLoaded } = useState(false);
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
-  const user = JSON.parse(localStorage.getItem('user'));
+  const { isAuth, token, user, checkAuth}=useAuth()
 
-  useEffect(() => {
-    if (token) {
-    const fetchUserInfo = async () => {
-      try {
-        await getUserInfo(token);
-      } catch (error) {
-        console.error('Error fetching user info:', error);
-      }
-    };
-
-    fetchUserInfo();}
-  }, [token]);
+  useEffect(()=>{
+   checkAuth()
+  },[])
 
   const handleSignOut = () => {
     // Clear user data from Local Storage and state
@@ -57,7 +48,7 @@ const Layout = () => {
           </NavLink>
         </span>
         <span>
-          {token ? (
+          {isAuth ? (
             <>
               <span
                 style={{
@@ -77,7 +68,7 @@ const Layout = () => {
                   </button>
                 </NavLink>
                 <div onClick={handleProfileClick} className={classes['profile']}>
-                  <span>{JSON.parse(localStorage.getItem('user')).username}</span>
+                  <span>{user.username}</span>
                   <span>
                     <img
                       src={user.image}

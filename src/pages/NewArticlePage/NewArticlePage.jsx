@@ -1,14 +1,13 @@
-import { Button, Flex, Form, Input } from 'antd';
+import { Button, Flex, Input } from 'antd';
 import { useState } from 'react';
 import { createArticle, updateArticle } from '../../services/services';
 import { useParams, useNavigate } from 'react-router-dom';
 import classes from '../NewArticlePage/NewArticlePage.module.scss'
-
+import { FormArticle } from '../../components/form/Form';
 
 
 const NewArticle = () => {
   const token = localStorage.getItem('token');
-  const [form] = Form.useForm();
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState('');
   const { slug } = useParams(); // Get slug from URL
@@ -51,83 +50,7 @@ const NewArticle = () => {
   return (
     <><div className={classes['container']}>
       <h2>Create new article</h2>
-       <Form
-      form={form}
-      scrollToFirstError
-      layout='vertical'
-      style={{ paddingBlock: 32 }}
-      labelCol={{ span: 23 }}
-      wrapperCol={{ span: 23 }}
-      onFinish={onFinish}
-    >
-      <Form.Item
-        name='title'
-        label='Title'
-        rules={[{ required: false }]}
-      >
-        <Input style={{height:'40px', borderRadius: '6px'}} />
-      </Form.Item>
-
-      <Form.Item
-        name='description'
-        label='Short description'
-        rules={[{ required: false }]}
-      >
-        <Input style={{height:'40px', borderRadius: '6px'}}/>
-      </Form.Item>
-
-      <Form.Item
-        name='body'
-        label='Text'
-        rules={[{ required: false }]}
-      >
-        <Input.TextArea rows={6} style={{borderRadius: '6px'}} />
-      </Form.Item>
-
-      <Form.Item label='Tags' className={classes['tags-wrapper']}>
-
-        
-          {tags.map((tag, index) => (
-            
-            <div className ={classes['tag-wrapper']}>
-            <span key={index} className={classes['tags']} >
-              {tag}
-            </span>
-            <Button 
-             style={{
-               cursor: 'pointer',
-               marginLeft: 8,
-               fontSize: 14,
-               color: '#999',
-             }}
-             onClick={() => handleDeleteTag(index)}
-           >
-             Delete
-            </Button>
-            </div>
-          ))}
-            <div className ={classes['tag-wrapper']}>
-            <Input
-            placeholder='Add a tag'
-            value={tagInput}
-            onChange={(e) => setTagInput(e.target.value)}
-            style={{height:'40px', maxWidth:'200px'}}
-          />
-          <Button onClick={handleAddTag}>Add</Button>
-          </div>
-          </Form.Item>
-      <Form.Item
-        wrapperCol={{ offset: 0,
-                       span: 8
-         }}
-      >
-        <Flex gap='small'>
-          <Button type='primary' block htmlType='submit' style={{height: '40px'}} >
-            Send
-          </Button>
-        </Flex>
-      </Form.Item>
-    </Form>
+       <FormArticle handleAddTag={handleAddTag} handleDeleteTag={handleDeleteTag} tagInput={tagInput} setTagInput={setTagInput} tags={tags} setTags={setTags} onFinish={onFinish} />
     </div></>
   );
 };
