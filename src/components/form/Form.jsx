@@ -1,10 +1,15 @@
 import { Button, Flex, Form, Input } from 'antd';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { useParams, useNavigate } from 'react-router-dom';
 import classes from './Form.module.scss';
 
-export const FormArticle = ({onFinish,tags,setTags,setTagInput,tagInput,handleDeleteTag,handleAddTag}) => {
+export const FormArticle = ({onFinish,tags,setTags,setTagInput,tagInput,handleDeleteTag,handleAddTag, article}) => {
   const [form] = Form.useForm();
+
+  useEffect(() => {
+    form.setFieldsValue({ title: article?.title, description: article?.description });
+  }, [article]);
     return (
         <Form
       form={form}
@@ -19,8 +24,11 @@ export const FormArticle = ({onFinish,tags,setTags,setTagInput,tagInput,handleDe
         name='title'
         label='Title'
         rules={[{ required: false }]}
+        
       >
-        <Input style={{height:'40px', borderRadius: '6px'}} />
+        <Input style={{height:'40px', borderRadius: '6px'}} 
+               value={article?.title??''}
+/>
       </Form.Item>
 
       <Form.Item

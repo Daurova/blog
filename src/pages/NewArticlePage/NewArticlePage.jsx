@@ -32,14 +32,9 @@ const NewArticle = () => {
       setIsLoading(true); // Set loading to true before making the API call
       values.tagList = tags; 
       console.log('New Article:', values, 'tags', tags);
-      if(slug){
-        console.log ('the slug is here')
-        await updateArticle({}=values, slug, token)
-        navigate('/')
-      } else {
         await createArticle({}=values, token);
         navigate('/')
-      }
+      
     } catch (error) {
       console.error('Error creating/updating article:', error);
     } finally {
