@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Form, Input, InputNumber } from 'antd';
 import classes from '../ProfilePage/ProfilePage.module.scss'
 
+const userfromLC = JSON.parse(localStorage.getItem('user'))
+console.log (userfromLC)
 const layout = {
   labelCol: {
     span: 8,
@@ -48,7 +50,7 @@ const Profile  = () => {
 
         <Form
         {...layout}
-        name='nest-messages'
+        // name='nest-messages'
         onFinish={onFinish}
         layout='vertical'
         labelCol={{
@@ -63,9 +65,10 @@ const Profile  = () => {
           maxWidth: 600,
         }}
         validateMessages={validateMessages}
+        
       >
         <Form.Item
-          name={['user', 'username']}
+          // name={userfromLC.username}
           label='Name'
           rules={[
             {
@@ -73,10 +76,12 @@ const Profile  = () => {
             },
           ]}
         >
-          <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
+          <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}
+                 value={userfromLC.username}
+/>
         </Form.Item>
         <Form.Item
-          name={['user', 'email']}
+          // name={['user', 'username']}
           label='Email'
           rules={[
             {
@@ -84,7 +89,8 @@ const Profile  = () => {
             },
           ]}
         >
-          <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
+          <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}
+                 value={userfromLC.email}/>
         </Form.Item>
         <Form.Item
       label='Password'
@@ -97,8 +103,9 @@ const Profile  = () => {
     >
       <Input.Password style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
     </Form.Item >
-        <Form.Item name={['user', 'image']} label='Image Url'>
-          <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
+        <Form.Item label='Image Url'>
+          <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}
+                 value={userfromLC.image}/>
         </Form.Item>
        
         <Form.Item
