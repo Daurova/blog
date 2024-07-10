@@ -8,7 +8,7 @@ export const FormArticle = ({onFinish,tags,setTags,setTagInput,tagInput,handleDe
   const [form] = Form.useForm();
 
   useEffect(() => {
-    form.setFieldsValue({ title: article?.title, description: article?.description });
+    form.setFieldsValue({ title: article?.title, description: article?.description, body: article?.body  });
   }, [article]);
     return (
         <Form
@@ -43,8 +43,10 @@ export const FormArticle = ({onFinish,tags,setTags,setTagInput,tagInput,handleDe
         name='body'
         label='Text'
         rules={[{ required: false }]}
+
       >
-        <Input.TextArea rows={6} style={{borderRadius: '6px'}} />
+        <Input.TextArea rows={6} style={{borderRadius: '6px'}}
+         />
       </Form.Item>
 
       <Form.Item label='Tags' className={classes['tags-wrapper']}>
@@ -74,7 +76,13 @@ export const FormArticle = ({onFinish,tags,setTags,setTagInput,tagInput,handleDe
             onChange={(e) => setTagInput(e.target.value)}
             style={{height:'40px', maxWidth:'200px'}}
           />
-          <Button onClick={handleAddTag}>Add</Button>
+          <Button onClick={handleAddTag}
+                  style={{
+                    cursor: 'pointer',
+                    marginLeft: 8,
+                    fontSize: 14,
+                    color: '#999',
+                  }}>Add</Button>
           </div>
           </Form.Item>
       <Form.Item
