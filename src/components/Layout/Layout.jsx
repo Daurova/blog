@@ -14,11 +14,11 @@ const Layout = () => {
   // const { userDetails, setUserDetails } = useState(null);
   // const { isLoaded, setIsLoaded } = useState(false);
   const navigate = useNavigate();
-  const { isAuth, token, user, checkAuth}=useAuth()
-
+  const { isAuth, user, checkAuth}=useAuth()
+  const token = localStorage.getItem('token')
   useEffect(()=>{
    checkAuth()
-  },[])
+  },[token])
 
   const handleSignOut = () => {
     // Clear user data from Local Storage and state

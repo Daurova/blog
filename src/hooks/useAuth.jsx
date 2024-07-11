@@ -10,16 +10,17 @@ export const useAuth = ()=>{
     const [token, setToken] = useState(null)
     const navigate = useNavigate()
 
-    useEffect(() => {
+    // useEffect(() => {
      
-    }, [token]);
+    // }, [isAuth]);
     const checkAuth = async()=>{
         const token = localStorage.getItem('token');
         const userInfo = JSON.parse(localStorage.getItem('user'));
   
-        if (token && userInfo) {
+        if (token) {
           setIsAuth(true);
           setUser(userInfo);
+          console.log('is Auth' , isAuth)
         } else {
           setIsAuth(false);
           setUser(null);
