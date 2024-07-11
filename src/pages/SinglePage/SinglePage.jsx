@@ -18,25 +18,19 @@ const SinglePage = () => {
   const token  = localStorage.getItem('token')
   const navigate = useNavigate()
   const [articleLikes, setArticleLikes] = useState({}); // State to track likes
-
+  const userName = JSON.parse(localStorage.getItem('user')).username
+  console.log(userName)
 
   const handleEdit = ()=>{
     navigate('edit')
   }
 
 
-  // const confirm = (e) => {
-  //   console.log(e);
-  //   message.success('Click on Yes');
-  //   deleteArticle(slug, token)
-  // };
   const cancel = (e) => {
     console.log(e);
     message.error('Click on No');
   };
-  // const handleDelete=()=>{
-  // //add delete service
-  // }
+ 
 
   console.log(slug)
 
@@ -69,14 +63,6 @@ const handleUnFavourite = async (slug) => {
     }
 };
 
-// const handleDelete = async (slug)=>{
-//   try {
-//     await deleteArticle(slug, token);
-//     navigate('/articles')
-// } catch (error) {
-//     console.error('Error disliking article:', error);
-// }
-// }
 
 const confirm= async()=>{
   await deleteArticle(slug, token);
@@ -138,23 +124,21 @@ const confirm= async()=>{
           </div>    
           </div>
           <div>
-          {token && (
-          <div style={{display:'flex', wrap:'no-wrap', padding:'10px', justifyContent: 'space-evenly'}}>
-          <Button onClick={handleEdit}>Edit</Button>
-           <Popconfirm
-            title='Delete the task'
-            description='Are you sure to delete this task?'
-            onConfirm={confirm}
-            onCancel={cancel}
-            okText='Yes'
-            cancelText='No'
-           >
-         <Button danger    
-                 style={{marginLeft: '10px'}}
-         >Delete</Button>
-           </Popconfirm> 
-           </div>
-          )}
+          {token && userName === article.article.author.username && (
+  <div style={{ display: 'flex', wrap: 'no-wrap', padding: '10px', justifyContent: 'space-evenly' }}>
+    <Button onClick={handleEdit}>Edit</Button>
+    <Popconfirm
+      title='Delete the task'
+      description='Are you sure to delete this task?'
+      onConfirm={confirm}
+      onCancel={cancel}
+      okText='Yes'
+      cancelText='No'
+    >
+      <Button danger style={{ marginLeft: '10px' }}>Delete</Button>
+    </Popconfirm>
+  </div>
+)}
            </div>
         </div>
         
