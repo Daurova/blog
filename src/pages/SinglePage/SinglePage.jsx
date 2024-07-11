@@ -124,7 +124,7 @@ const confirm= async()=>{
           </div>    
           </div>
           <div>
-          {token && userName === article.article.author.username && (
+     {token && userName && userName === article.article.author.username && (
   <div style={{ display: 'flex', wrap: 'no-wrap', padding: '10px', justifyContent: 'space-evenly' }}>
     <Button onClick={handleEdit}>Edit</Button>
     <Popconfirm
