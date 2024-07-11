@@ -10,9 +10,7 @@ export const useAuth = ()=>{
     const [token, setToken] = useState(null)
     const navigate = useNavigate()
 
-    // useEffect(() => {
-     
-    // }, [isAuth]);
+   
     const checkAuth = async()=>{
         const token = localStorage.getItem('token');
         const userInfo = JSON.parse(localStorage.getItem('user'));
