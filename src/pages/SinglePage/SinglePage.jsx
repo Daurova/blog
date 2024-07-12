@@ -18,7 +18,7 @@ const SinglePage = () => {
   const token  = localStorage.getItem('token')
   const navigate = useNavigate()
   const [articleLikes, setArticleLikes] = useState({}); // State to track likes
-  const userName = JSON.parse(localStorage.getItem('user')).username
+  const userName = JSON.parse(localStorage.getItem('user'))?.username
   console.log(userName)
 
   const handleEdit = ()=>{
