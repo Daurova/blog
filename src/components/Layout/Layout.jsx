@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // import { toast, Bounce } from 'react-toastify';
-// import { Loading3QuartersOutlined } from '@ant-design/icons';
+// import { SpinQuartersOutlined } from '@ant-design/icons';
 import { getUserInfo } from '../../services/services';
 import classes from '../Layout/Layout.module.scss';
 import { useAuth } from '../../hooks/useAuth';

@@ -2,10 +2,11 @@ import React, { useEffect, useState, Fragment } from 'react'
 import { getArticles } from '../../services/services'
 import {Pagination} from 'antd'
 import { Link, useSearchParams } from 'react-router-dom'
-import {HeartOutlined, HeartFilled, Loading3QuartersOutlined} from '@ant-design/icons'
+import {HeartOutlined, HeartFilled} from '@ant-design/icons'
 import { format } from 'date-fns';
 import { favoriteAnArticle, unfavoriteAnArticle} from '../../services/services'
 import classes from './MainPage.module.scss'
+import {Spin} from 'antd'
 
 
 
@@ -79,7 +80,7 @@ const Blog  = () => {    const [posts, setPosts]=useState([])
     return (
         
         <div>
-          {isLoading? <Loading3QuartersOutlined/>:
+          {isLoading? <Spin/>:
       
           posts?.map((item, index) => (  
             <>

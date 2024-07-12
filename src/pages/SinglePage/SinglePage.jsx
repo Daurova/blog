@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getArticle } from '../../services/services';
 import Markdown from 'react-markdown'
-import { Button, message, Popconfirm } from 'antd';
+import { Button, message, Popconfirm, Spin } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { deleteArticle } from '../../services/services';
 import { favoriteAnArticle, unfavoriteAnArticle} from '../../services/services'
@@ -19,6 +19,7 @@ const SinglePage = () => {
   const navigate = useNavigate()
   const [articleLikes, setArticleLikes] = useState({}); // State to track likes
   const userName = JSON.parse(localStorage.getItem('user'))?.username
+  const [isLoading, setIsLoading] = useState(true)
   console.log(userName)
 
   const handleEdit = ()=>{
@@ -79,6 +80,8 @@ const confirm= async()=>{
         setArticleLikes({ [slug]: data.article.favoritesCount });
       } catch (error) {
         console.error('Error fetching article:', error);
+      }finally {
+        setIsLoading(false); // Убираем лоадер после загрузки
       }
     };
     getData();
@@ -89,9 +92,13 @@ const confirm= async()=>{
     <>
     <div style={{backgroundColor:'white', width:'938px'}}
           className={classes['article-single']}>
-
+    
       {/* Display other article details */}
-      { article && (
+      
+      
+      {isLoading ? ( 
+        <Spin tip="Загрузка статьи..." />
+      ) : ( article && (
         <>
       <div className={classes['article-single-overview']}>
         <div className={classes['article-single-left']}> 
@@ -147,7 +154,7 @@ const confirm= async()=>{
         <Markdown>{article.article.body}</Markdown>
       </div>
         </>
-      )}
+      ))}
     </div>
     </>
   );
