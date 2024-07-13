@@ -127,9 +127,9 @@ const SignUp = () => {
           height: 68
         }}
         onFinish={onFinish}
-        initialValues={{
-          email: ['est@test.ru'],
-        }}
+        // initialValues={{
+        //   email: ['est@test.ru'],
+        // }}
        
         scrollToFirstError
       >
@@ -176,7 +176,8 @@ const SignUp = () => {
           ]}
           hasFeedback
         >
-          <Input.Password style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
+          <Input.Password style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}
+                          />
         </Form.Item>
   
         <Form.Item

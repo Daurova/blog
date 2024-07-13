@@ -21,7 +21,6 @@
     "plugins": ["react", "prettier", "import"],
     "rules": {
       "indent": ["error", 2],
-      "no-unused-vars": "off",
       "prettier/prettier": "warn",
       "linebreak-style": [0, "unix"],
       "quotes": ["error", "single"],
