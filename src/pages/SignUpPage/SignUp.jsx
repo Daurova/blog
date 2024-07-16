@@ -82,6 +82,7 @@ const SignUp = () => {
         <div className={classes['container']}>
         <h2 style={{fontWeight:'500px', fontSize:'20px', marginTop:'0px'}}>Create new account</h2>
         <Form
+
         {...formItemLayout}
         form={form}
         name='register'
@@ -95,9 +96,7 @@ const SignUp = () => {
           height: 68
         }}
         onFinish={onFinish}
-        // initialValues={{
-        //   email: ['est@test.ru'],
-        // }}
+
        
         scrollToFirstError
       >
@@ -105,7 +104,7 @@ const SignUp = () => {
           name='username'
           label='Username'
           tooltip='Some username'
-          rules={[
+                    rules={[
             {
               required: true,
               message: 'Please input your nickname!',
@@ -113,7 +112,8 @@ const SignUp = () => {
             },
           ]}
         >
-          <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}/>
+          <Input style={{ height: '56px', marginTop:'0px', borderRadius:'6px', backgroundColor: 'white'}}
+        />
         </Form.Item>
         <Form.Item
           name='email'

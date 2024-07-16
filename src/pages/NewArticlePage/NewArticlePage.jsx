@@ -1,4 +1,4 @@
-import { Button, Flex, Input } from 'antd';
+import { Spin } from 'antd';
 import { useState } from 'react';
 import { createArticle, updateArticle } from '../../services/services';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -45,7 +45,16 @@ const NewArticle = () => {
   return (
     <><div className={classes['container']}>
       <h2>Create new article</h2>
-       <FormArticle handleAddTag={handleAddTag} handleDeleteTag={handleDeleteTag} tagInput={tagInput} setTagInput={setTagInput} tags={tags} setTags={setTags} onFinish={onFinish} />
+      <Spin spinning={isLoading}>
+       <FormArticle 
+         handleAddTag={handleAddTag} 
+         handleDeleteTag={handleDeleteTag} 
+         tagInput={tagInput} 
+         setTagInput={setTagInput} 
+         tags={tags} 
+         setTags={setTags} 
+         onFinish={onFinish} />
+      </Spin>   
     </div></>
   );
 };
