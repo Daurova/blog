@@ -73,16 +73,16 @@ const Layout = () => {
                 <div onClick={handleProfileClick} className={classes['profile']}>
                   <span>{user.username}</span>
                   <span>
-                    <img
-                      src={user.image}
-                      alt='user avatar'
-                      style={{
-                        width: '46px',
-                        height: '46px',
-                        borderRadius: '50%',
-                        marginLeft: '5px',
-                      }}
-                    ></img>
+                  <img
+  src={user.image ? user.image : '/images/Rectangle1.svg'}
+  alt='user avatar'
+  style={{
+    width: '46px',
+    height: '46px',
+    borderRadius: '50%',
+    marginLeft: '5px',
+  }}
+/>
                   </span>
                 </div>
                 <NavLink to='/articles'>

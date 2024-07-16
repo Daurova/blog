@@ -6,40 +6,7 @@ import { registerNewUser } from '../../services/services';
 import classes from '../SignUpPage/SignUpPage.module.scss'
 
 const { Option } = Select;
-const residences = [
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [
-      {
-        value: 'hangzhou',
-        label: 'Hangzhou',
-        children: [
-          {
-            value: 'xihu',
-            label: 'West Lake',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    children: [
-      {
-        value: 'nanjing',
-        label: 'Nanjing',
-        children: [
-          {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
-          },
-        ],
-      },
-    ],
-  },
-];
+
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -73,7 +40,7 @@ const tailFormItemLayout = {
 
 const SignUp = () => {
     const navigate = useNavigate();
-    const [setIsSignedUp] = useState(false);
+    const [isSignedUp, setIsSignedUp] = useState(false);
 
     const [form] = Form.useForm();
     const onFinish = async(values) => {
@@ -84,6 +51,7 @@ const SignUp = () => {
     if (response) {
       navigate('/articles');
       setIsSignedUp(true);
+      localStorage.setItem('token', response.token)
 
     } 
   }catch{
