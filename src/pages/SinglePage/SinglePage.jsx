@@ -135,8 +135,8 @@ const confirm= async()=>{
   <div style={{ display: 'flex', wrap: 'no-wrap', padding: '10px', justifyContent: 'space-evenly' }}>
     <Button onClick={handleEdit}>Edit</Button>
     <Popconfirm
-      title='Delete the task'
-      description='Are you sure to delete this task?'
+      title='Delete the article'
+      description='Are you sure to delete this article?'
       onConfirm={confirm}
       onCancel={cancel}
       okText='Yes'
